@@ -29,12 +29,12 @@ public class AgressivZombieState implements BaseState<Zombie> {
 			Player player = game.eManager.getPlayer().get(0);
 			MovingComponent m = player.getMovingComponent();
 
-			if (!owner.getMovingComponent().obstacleAvoidanceByLine(game.eManager.getObstacle(),
+			if (!owner.getMovingComponent().obstacleAvoidanceByCircle(game.eManager.getObstacle(),
 					owner.getRender().getShape(0).getBoundingCircleRadius(), 10)) {
 				if (owner.getMovingComponent().getLocation().dist(game.eManager.getPlayer().get(0).getMovingComponent().getLocation()) < 200) {
 					owner.getMovingComponent().pursuit(game.eManager.getPlayer().get(0).getMovingComponent().getLocation(),
 							game.eManager.getPlayer().get(0).getMovingComponent().getVelocity(),
-							game.eManager.getPlayer().get(0).getMovingComponent().currentSpeed(), 5);
+							game.eManager.getPlayer().get(0).getMovingComponent().currentSpeed(), 1);
 					owner.getMovingComponent().setMaxSpeed(3.1);
 				} else {
 					owner.getMovingComponent().setMaxSpeed(0.2);

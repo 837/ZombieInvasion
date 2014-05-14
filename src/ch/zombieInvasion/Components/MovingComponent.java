@@ -159,12 +159,15 @@ public class MovingComponent {
 		return false;
 	}
 
-	public boolean obstacleAvoidanceByLine(List<Obstacle> list, float radius, double maxForce) {
+	public boolean obstacleAvoidanceByCircle(List<Obstacle> list, float radius, double maxForce) {
 		double dynamic_length = velocity.mag();
-		aheadCircle = new Circle((float) location.add(velocity.normalize().mult((MAX_SEE_AHEAD)).mult(dynamic_length)).x,
-				(float) location.add(velocity.normalize().mult((MAX_SEE_AHEAD)).mult(dynamic_length)).y, radius - 1, 8);
+		// aheadCircle = new Circle((float)
+		// location.add(velocity.normalize().mult((MAX_SEE_AHEAD)).mult(dynamic_length)).x,
+		// (float)
+		// location.add(velocity.normalize().mult((MAX_SEE_AHEAD)).mult(dynamic_length)).y,
+		// radius, 8);
 
-		aheadCircle2 = new Circle((float) location.x, (float) location.y, radius - 1, 8);
+		aheadCircle2 = new Circle((float) location.x, (float) location.y, radius, 9);
 
 		mostThreatening = null;
 
@@ -181,9 +184,14 @@ public class MovingComponent {
 		if (mostThreatening != null) {
 			obstacle_center = new Vector2D(mostThreatening.get().getCenterX(), mostThreatening.get().getCenterY());
 
-			 avoidForce =
-			 location.sub(obstacle_center).normalize().mult(maxSpeed);
-			//avoidForce = tangentVectorToCircle(mostThreatening.get()).mult(maxSpeed);
+			double p = location.dist(obstacle_center) - (radius + mostThreatening.get().getBoundingCircleRadius());
+
+			avoidForce = location.sub(obstacle_center).normalize().mult((p * -1));
+
+			// avoidForce =
+			// location.sub(obstacle_center).normalize().mult(maxSpeed);
+			// avoidForce =
+			// tangentVectorToCircle(mostThreatening.get()).mult(maxSpeed);
 			applyForce(avoidForce, maxForce);
 			return true;
 		} else {
@@ -209,7 +217,7 @@ public class MovingComponent {
 		double rd = (radius / d);
 
 		if (rd >= 1) {
-			rd = 0.5;
+			rd = 0.1;
 		}
 		double angle = Math.acos(rd);
 

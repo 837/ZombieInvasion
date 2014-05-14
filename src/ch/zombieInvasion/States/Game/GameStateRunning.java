@@ -2,9 +2,12 @@ package ch.zombieInvasion.States.Game;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.IntStream;
 
+import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.TrueTypeFont;
 
 import ch.zombieInvasion.Game;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
@@ -39,12 +42,13 @@ public class GameStateRunning implements BaseState<Game> {
 			EventDispatcher.dispatchEvents();
 			next_game_tick += SKIP_TICKS;
 			loops++;
-
+		}
+		if (next_game_tick > System.currentTimeMillis() + SKIP_TICKS) {
+			next_game_tick = System.currentTimeMillis() + SKIP_TICKS;
 		}
 		if (game.container.getInput().isKeyPressed(Input.KEY_H)) {
-			for (int i = 0; i < 10; i++) {
-				game.eManager.addZombie(new Zombie(new Vector2D(new Random().nextInt(100) + 50, new Random().nextInt(100)+50)));
-			}
+			IntStream.range(0, 10).forEach(
+					e -> game.eManager.addZombie(new Zombie(new Vector2D(new Random().nextInt(100) + 150, new Random().nextInt(100) + 150))));
 		}
 		if (game.container.getInput().isKeyPressed(Input.KEY_G)) {
 			EventDispatcher.createEvent(0, EventType.KILL_ALL_ZOMBIES, null);
@@ -104,7 +108,11 @@ public class GameStateRunning implements BaseState<Game> {
 				EventDispatcher.createEvent(0, EventType.DELETE_ME, addInfo);
 			}
 		}
+		System.out.println(game.eManager.getZombies().size());
 		extrapolation = (System.currentTimeMillis() + SKIP_TICKS - next_game_tick) / SKIP_TICKS;
+		if (extrapolation > 1) {
+			extrapolation = 1;
+		}
 	}
 
 	@Override

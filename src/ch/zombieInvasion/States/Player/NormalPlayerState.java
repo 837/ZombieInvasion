@@ -25,10 +25,11 @@ public class NormalPlayerState implements BaseState<Player> {
 		GameContainer container = game.container;
 		mousePos = new Vector2D(container.getInput().getAbsoluteMouseX(), container.getInput().getAbsoluteMouseY());
 
-		if (!owner.getMovingComponent().obstacleAvoidanceByLine(game.eManager.getObstacle(), owner.getRender().getShape(0).getBoundingCircleRadius(),
-				0.5)) {
-			owner.getMovingComponent().arrive(mousePos, 0.4);
+		if (!owner.getMovingComponent().obstacleAvoidanceByCircle(game.eManager.getObstacle(),
+				owner.getRender().getShape(0).getBoundingCircleRadius(), 1)) {
+			owner.getMovingComponent().arrive(mousePos, 1);
 		}
+
 		owner.getMovingComponent().update();
 		EventDispatcher.getEvents().forEach(e -> {
 			switch (e.getEvent()) {
