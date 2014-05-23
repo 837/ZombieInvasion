@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.newdawn.slick.Graphics;
 
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
 import ch.zombieInvasion.Eventhandling.EventType;
 import ch.zombieInvasion.Items.Drop;
@@ -19,15 +20,15 @@ import ch.zombieInvasion.Weapons.Weapon;
 import ch.zombieInvasion.Zombies.Zombie;
 
 public class EntityManager {
-	private List<Drop> drops = new ArrayList<>();
-	private List<Zombie> zombies = new ArrayList<>();
-	private List<Weapon> weapons = new ArrayList<>();
-	private List<Zivilist> zivilists = new ArrayList<>();
-	private List<Tower> towers = new ArrayList<>();
-	private List<Helicopter> helos = new ArrayList<>();
-	private List<Player> player = new ArrayList<>();
+	private ArrayList<Drop> drops = new ArrayList<>();
+	private ArrayList<Zombie> zombies = new ArrayList<>();
+	private ArrayList<Weapon> weapons = new ArrayList<>();
+	private ArrayList<Zivilist> zivilists = new ArrayList<>();
+	private ArrayList<Tower> towers = new ArrayList<>();
+	private ArrayList<Helicopter> helicopter = new ArrayList<>();
+	private ArrayList<Player> player = new ArrayList<>();
 
-	private List<Obstacle> obstacles = new ArrayList<>();
+	private ArrayList<Obstacle> obstacles = new ArrayList<>();
 
 	public void Update(Game game) {
 		update(drops, game);
@@ -37,18 +38,18 @@ public class EntityManager {
 		update(zivilists, game);
 		update(player, game);
 		update(obstacles, game); // doesn't need updates
-		update(helos, game);
+		update(helicopter, game);
 	}
 
-	public void Render(Graphics g, double extrapolation) {
-		render(drops, g, extrapolation);
-		render(weapons, g, extrapolation);
-		render(towers, g, extrapolation);
-		render(zombies, g, extrapolation);
-		render(zivilists, g, extrapolation);
-		render(player, g, extrapolation);
-		render(obstacles, g, extrapolation);
-		render(helos, g, extrapolation);
+	public void Render(Graphics g, double extrapolation, Camera camera) {
+		render(drops, g, extrapolation, camera);
+		render(weapons, g, extrapolation, camera);
+		render(towers, g, extrapolation, camera);
+		render(zombies, g, extrapolation, camera);
+		render(zivilists, g, extrapolation, camera);
+		render(player, g, extrapolation, camera);
+		render(obstacles, g, extrapolation, camera);
+		render(helicopter, g, extrapolation, camera);
 	}
 
 	public void update(List<? extends Entity> l, Game game) {
@@ -60,8 +61,8 @@ public class EntityManager {
 		l.stream().forEach(e -> e.update(game));
 	}
 
-	public void render(List<? extends Entity> l, Graphics g, double extrapolation) {
-		l.stream().forEach(e -> e.render(g, extrapolation));
+	public void render(List<? extends Entity> l, Graphics g, double extrapolation, Camera camera) {
+		l.stream().forEach(e -> e.render(g, extrapolation, camera));
 	}
 
 	public void deleteAll() {
@@ -70,7 +71,7 @@ public class EntityManager {
 		weapons = new ArrayList<>();
 		zivilists = new ArrayList<>();
 		towers = new ArrayList<>();
-		helos = new ArrayList<>();
+		helicopter = new ArrayList<>();
 		obstacles = new ArrayList<>();
 	}
 
@@ -95,7 +96,7 @@ public class EntityManager {
 	}
 
 	public void addHelicopter(Helicopter e) {
-		helos.add(e);
+		helicopter.add(e);
 	}
 
 	public void addPlayer(Player e) {
@@ -106,35 +107,35 @@ public class EntityManager {
 		obstacles.add(e);
 	}
 
-	public List<Drop> getDrops() {
+	public ArrayList<Drop> getDrops() {
 		return drops;
 	}
 
-	public List<Zombie> getZombies() {
+	public ArrayList<Zombie> getZombies() {
 		return zombies;
 	}
 
-	public List<Weapon> getWeapons() {
+	public ArrayList<Weapon> getWeapons() {
 		return weapons;
 	}
 
-	public List<Zivilist> getZivilists() {
+	public ArrayList<Zivilist> getZivilists() {
 		return zivilists;
 	}
 
-	public List<Tower> getTowers() {
+	public ArrayList<Tower> getTowers() {
 		return towers;
 	}
 
-	public List<Helicopter> getHelos() {
-		return helos;
+	public ArrayList<Helicopter> getHelicopter() {
+		return helicopter;
 	}
 
-	public List<Player> getPlayer() {
+	public ArrayList<Player> getPlayer() {
 		return player;
 	}
 
-	public List<Obstacle> getObstacle() {
+	public ArrayList<Obstacle> getObstacle() {
 		return obstacles;
 	}
 }

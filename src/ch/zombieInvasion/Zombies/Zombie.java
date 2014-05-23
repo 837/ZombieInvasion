@@ -3,6 +3,7 @@ package ch.zombieInvasion.Zombies;
 import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Components.LifeComponent;
 import ch.zombieInvasion.Components.MovingComponent;
 import ch.zombieInvasion.Components.RenderComponent;
@@ -29,8 +30,8 @@ public class Zombie implements Entity {
 	}
 
 	@Override
-	public void render(Graphics g, double extrapolation) {
-		stateMachine.Render(g, extrapolation);
+	public void render(Graphics g, double extrapolation, Camera camera) {
+		stateMachine.Render(g, extrapolation, camera);
 	}
 
 	@Override

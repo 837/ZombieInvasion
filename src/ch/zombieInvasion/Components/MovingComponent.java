@@ -10,9 +10,12 @@ import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.tiled.TiledMap;
 
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.Objekte.Obstacle;
+import ch.zombieInvasion.util.Util;
 import ch.zombieInvasion.util.Vector2D;
 
 public class MovingComponent {
@@ -29,7 +32,14 @@ public class MovingComponent {
 	public Circle aheadCircle = new Circle(0, 0, 0);
 	public Circle aheadCircle2 = new Circle(0, 0, 0);
 	public Vector2D obstacle_center = new Vector2D();
+
+	public Vector2D obstacle_center2 = new Vector2D();
 	public Vector2D avoidForce = new Vector2D();
+	public Vector2D avoidForce2 = new Vector2D();
+	final int MAX_SEE_AHEAD = 10;
+	Obstacle mostThreatening = null;
+	Obstacle mostThreatening2 = null;
+
 	private double maxSpeed = 0;
 	private double mass = 0;
 
@@ -69,10 +79,9 @@ public class MovingComponent {
 		double d = desired.magSq();
 		desired = desired.normalize();
 
-		if (d < (30 * 30)) {
-			float m = (float) (maxSpeed / 4 * Math.log10(d + 1));// LOG
-			// float m = Util.map((float) d, 0, (30 * 30), 0, (float)
-			// maxSpeed);//LIN
+		if (d < (100 * 100)) {
+			// float m = (float) (maxSpeed / 4 * Math.log10(d + 1));// LOG
+			float m = Util.map((float) d, 0, (100 * 100), 0, (float) maxSpeed);// LIN
 			desired = desired.mult(m);
 		} else {
 			desired = desired.mult(maxSpeed);
@@ -85,10 +94,10 @@ public class MovingComponent {
 		Vector2D toTarget = targetLocation.sub(location);
 		Vector2D targetHeading = targetVelocity.normalize();
 		if ((targetHeading.dotP(heading)) > 0.9876 || (targetHeading.dotP(heading)) < -0.9876) {
-			arrive(targetLocation, maxForce);
+			seek(targetLocation, maxForce);
 		} else {
 			double lookAheadTime = toTarget.mag() / (maxSpeed + targetSpeed);
-			arrive(targetLocation.add(targetVelocity.mult(lookAheadTime)), maxForce);
+			seek(targetLocation.add(targetVelocity.mult(lookAheadTime)), maxForce);
 		}
 	}
 
@@ -126,9 +135,6 @@ public class MovingComponent {
 		// TO-DO
 	}
 
-	final int MAX_SEE_AHEAD = 10;
-	Obstacle mostThreatening = null;
-
 	public boolean obstacleAvoidanceByPoint(List<Obstacle> list, float radius, double maxForce) {
 		double dynamic_length = velocity.mag();
 		ahead = location.add(velocity.normalize().mult((MAX_SEE_AHEAD)).mult(dynamic_length));
@@ -159,8 +165,8 @@ public class MovingComponent {
 		return false;
 	}
 
-	public boolean obstacleAvoidanceByCircle(List<Obstacle> list, float radius, double maxForce) {
-		double dynamic_length = velocity.mag();
+	public boolean obstacleCollisionByCircle(List<Obstacle> list, float radius, double maxForce) {
+		// double dynamic_length = velocity.mag();
 		// aheadCircle = new Circle((float)
 		// location.add(velocity.normalize().mult((MAX_SEE_AHEAD)).mult(dynamic_length)).x,
 		// (float)
@@ -170,12 +176,16 @@ public class MovingComponent {
 		aheadCircle2 = new Circle((float) location.x, (float) location.y, radius, 9);
 
 		mostThreatening = null;
+		mostThreatening2 = null;
 
 		list.forEach(e -> {
 			Vector2D obstacle_center = new Vector2D(e.get().getCenterX(), e.get().getCenterY());
 
 			if (aheadCircle.intersects(e.get()) || aheadCircle2.intersects(e.get())) {
 				if (mostThreatening == null || location.dist(obstacle_center) < location.dist(mostThreatening.get().getCenter())) {
+					if (mostThreatening != null && location.dist(obstacle_center) <= location.dist(mostThreatening.get().getCenter())) {
+						mostThreatening2 = e;
+					}
 					mostThreatening = e;
 				}
 			}
@@ -192,14 +202,37 @@ public class MovingComponent {
 			// location.sub(obstacle_center).normalize().mult(maxSpeed);
 			// avoidForce =
 			// tangentVectorToCircle(mostThreatening.get()).mult(maxSpeed);
+			// arrive(location.add(avoidForce.mult(5)), maxForce);
+			// applyForce(avoidForce, maxForce);
+			// return true;
+			// arrive(avoidForce.add(avoidForce2), maxForce);
 			applyForce(avoidForce, maxForce);
-			return true;
+		}
+		if (mostThreatening2 != null) {
+			obstacle_center2 = new Vector2D(mostThreatening2.get().getCenterX(), mostThreatening2.get().getCenterY());
+
+			double p = location.dist(obstacle_center2) - (radius + mostThreatening2.get().getBoundingCircleRadius());
+
+			avoidForce2 = location.sub(obstacle_center2).normalize().mult((p * -1));
+
+			// avoidForce =
+			// location.sub(obstacle_center).normalize().mult(maxSpeed);
+			// avoidForce =
+			// tangentVectorToCircle(mostThreatening.get()).mult(maxSpeed);
+			// arrive(location.add(avoidForce.mult(5)), maxForce);
+			// applyForce(avoidForce, maxForce);
+
+			// arrive(avoidForce.add(avoidForce2), maxForce);
+			applyForce(avoidForce2, maxForce);
+			// return true;
 		} else {
 			avoidForce = avoidForce.mult(0);
+			avoidForce2 = avoidForce.mult(0);
 		}
 		return false;
 	}
 
+	
 	private Vector2D tangentVectorToCircle(Shape s) {
 		double circleX = s.getCenterX();
 		double circleY = s.getCenterY();

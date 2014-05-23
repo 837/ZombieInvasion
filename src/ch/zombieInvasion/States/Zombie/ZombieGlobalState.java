@@ -3,6 +3,7 @@ package ch.zombieInvasion.States.Zombie;
 import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
 import ch.zombieInvasion.States.BaseState;
 import ch.zombieInvasion.Zombies.Zombie;
@@ -28,7 +29,7 @@ public class ZombieGlobalState implements BaseState<Zombie> {
 	}
 
 	@Override
-	public void Render(Zombie owner, Graphics g, double extrapolation) {
+	public void Render(Zombie owner, Graphics g, double extrapolation, Camera camera) {
 		// TODO Auto-generated method stub
 
 	}

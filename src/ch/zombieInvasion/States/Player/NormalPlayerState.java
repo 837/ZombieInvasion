@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Eventhandling.Event;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
 import ch.zombieInvasion.Objekte.Player;
@@ -23,12 +24,17 @@ public class NormalPlayerState implements BaseState<Player> {
 	@Override
 	public void Update(Player owner, Game game) {
 		GameContainer container = game.container;
-		mousePos = new Vector2D(container.getInput().getAbsoluteMouseX(), container.getInput().getAbsoluteMouseY());
+		mousePos = new Vector2D(container.getInput().getAbsoluteMouseX() + game.camera.getCamX(), container.getInput().getAbsoluteMouseY()
+				+ game.camera.getCamY());
 
-		if (!owner.getMovingComponent().obstacleAvoidanceByCircle(game.eManager.getObstacle(),
-				owner.getRender().getShape(0).getBoundingCircleRadius(), 1)) {
-			owner.getMovingComponent().arrive(mousePos, 1);
+		double force = 2;
+
+		if (owner.getMovingComponent().obstacleCollisionByCircle(game.world.eManager.getObstacle(),
+				owner.getRender().getShape(0).getBoundingCircleRadius(), 5)) {
+			force = 2;
 		}
+
+		owner.getMovingComponent().arrive(mousePos, force);
 
 		owner.getMovingComponent().update();
 		EventDispatcher.getEvents().forEach(e -> {
@@ -45,28 +51,29 @@ public class NormalPlayerState implements BaseState<Player> {
 	}
 
 	@Override
-	public void Render(Player owner, Graphics g, double extrapolation) {
+	public void Render(Player owner, Graphics g, double extrapolation, Camera camera) {
 		Vector2D locationE = owner.getMovingComponent().extrapolatedLocation(extrapolation);
 		Vector2D location = owner.getMovingComponent().getLocation();
-		owner.getRender().rotateAndRender(locationE, g, 0, locationE.add(owner.getMovingComponent().getHeading()));
+		owner.getRender().rotateAndRender(locationE, g, 0, locationE.add(owner.getMovingComponent().getHeading()), camera);
 
-		owner.getRender().renderCollisionShape(location, g);
+		owner.getRender().renderCollisionShape(location, g, camera);
 
 		g.setColor(Color.cyan);
-		Vector2D veloLoc = location.add(owner.getMovingComponent().getVelocity().mult(20));
-		g.drawLine((float) location.x, (float) location.y, (float) veloLoc.x, (float) veloLoc.y);
-
-		g.setColor(Color.magenta);
-		Vector2D centVector2d = owner.getMovingComponent().obstacle_center;
-		g.drawLine((float) location.x, (float) location.y, (float) centVector2d.x, (float) centVector2d.y);
+		Vector2D veloLoc = locationE.add(owner.getMovingComponent().getVelocity().mult(20));
+		g.drawLine((float) (locationE.x - camera.getCamX()), (float) (locationE.y - camera.getCamY()), (float) (veloLoc.x - camera.getCamX()),
+				(float) (veloLoc.y - camera.getCamY()));
 
 		g.setColor(Color.black);
-		Vector2D avoidForce = location.add(owner.getMovingComponent().avoidForce.mult(10));
-		g.drawLine((float) location.x, (float) location.y, (float) avoidForce.x, (float) avoidForce.y);
+		Vector2D avoidForce = locationE.add(owner.getMovingComponent().avoidForce.mult(10));
+		g.drawLine((float) (locationE.x - camera.getCamX()), (float) (locationE.y - camera.getCamY()), (float) (avoidForce.x - camera.getCamX()),
+				(float) (avoidForce.y - camera.getCamY()));
 
 		g.setColor(Color.blue);
-		g.draw(owner.getMovingComponent().aheadCircle);
+		owner.getMovingComponent().aheadCircle2.setCenterX((float) (location.x - camera.getCamX()));
+		owner.getMovingComponent().aheadCircle2.setCenterY((float) (location.y - camera.getCamY()));
 		g.draw(owner.getMovingComponent().aheadCircle2);
+		owner.getMovingComponent().aheadCircle2.setCenterX((float) (location.x + camera.getCamX()));
+		owner.getMovingComponent().aheadCircle2.setCenterY((float) (location.y + camera.getCamY()));
 		g.setColor(Color.black);
 	}
 

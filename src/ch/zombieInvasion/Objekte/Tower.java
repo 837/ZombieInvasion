@@ -11,6 +11,7 @@ import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Eventhandling.Event;
 import ch.zombieInvasion.Weapons.Bullet;
 import ch.zombieInvasion.Zombies.Zombie;
@@ -21,7 +22,7 @@ import ch.zombieInvasion.util.Timer;
 public class Tower implements Entity {
 
 	@Override
-	public void render(Graphics g, double extrapolation) {
+	public void render(Graphics g, double extrapolation, Camera camera) {
 		// TODO Auto-generated method stub
 
 	}

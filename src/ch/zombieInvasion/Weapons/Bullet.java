@@ -3,13 +3,14 @@ package ch.zombieInvasion.Weapons;
 import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Eventhandling.Event;
 import ch.zombieInvasion.Objekte.Entity;
 
 public class Bullet implements Entity {
 
 	@Override
-	public void render(Graphics g, double extrapolation) {
+	public void render(Graphics g, double extrapolation, Camera camera) {
 		// TODO Auto-generated method stub
 
 	}
@@ -19,6 +20,5 @@ public class Bullet implements Entity {
 		// TODO Auto-generated method stub
 
 	}
-
 
 }

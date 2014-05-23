@@ -6,6 +6,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Components.MovingComponent;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
 import ch.zombieInvasion.Eventhandling.EventType;
@@ -26,22 +27,20 @@ public class AgressivZombieState implements BaseState<Zombie> {
 	@Override
 	public void Update(Zombie owner, Game game) {
 		if (!owner.getLife().isDead()) {
-			Player player = game.eManager.getPlayer().get(0);
+			Player player = game.world.eManager.getPlayer().get(0);
 			MovingComponent m = player.getMovingComponent();
-
-			if (!owner.getMovingComponent().obstacleAvoidanceByCircle(game.eManager.getObstacle(),
-					owner.getRender().getShape(0).getBoundingCircleRadius(), 10)) {
-				if (owner.getMovingComponent().getLocation().dist(game.eManager.getPlayer().get(0).getMovingComponent().getLocation()) < 200) {
-					owner.getMovingComponent().pursuit(game.eManager.getPlayer().get(0).getMovingComponent().getLocation(),
-							game.eManager.getPlayer().get(0).getMovingComponent().getVelocity(),
-							game.eManager.getPlayer().get(0).getMovingComponent().currentSpeed(), 1);
-					owner.getMovingComponent().setMaxSpeed(3.1);
-				} else {
-					owner.getMovingComponent().setMaxSpeed(0.2);
-					owner.getMovingComponent().wander(10, 90, 0.05, 0.3);
+			
+				if (!owner.getMovingComponent().obstacleCollisionByCircle(game.world.eManager.getObstacle(),
+						owner.getRender().getShape(0).getBoundingCircleRadius(), 10)) {
+					if (owner.getMovingComponent().getLocation().dist(m.getLocation()) < 200) {
+						owner.getMovingComponent().pursuit(m.getLocation(), m.getVelocity(), m.currentSpeed(), 5);
+						owner.getMovingComponent().setMaxSpeed(4.1);
+					} else {
+						owner.getMovingComponent().setMaxSpeed(1.2);
+						owner.getMovingComponent().wander(10, 90, 0.05, 0.3);
+					}
 				}
-			}
-
+			
 			owner.getMovingComponent().update();
 
 		} else {
@@ -52,22 +51,24 @@ public class AgressivZombieState implements BaseState<Zombie> {
 	}
 
 	@Override
-	public void Render(Zombie owner, Graphics g, double extrapolation) {
+	public void Render(Zombie owner, Graphics g, double extrapolation, Camera camera) {
 		Vector2D locationE = owner.getMovingComponent().extrapolatedLocation(extrapolation);
 		Vector2D location = owner.getMovingComponent().getLocation();
-		owner.getRender().rotateAndRender(locationE, g, 0, locationE.add(owner.getMovingComponent().getHeading()));
-
-		owner.getRender().renderCollisionShape(location, g);
-
-	
+		owner.getRender().rotateAndRender(locationE, g, 0, locationE.add(owner.getMovingComponent().getHeading()), camera);
+		// owner.getRender().renderAt(locationE, g, 0, camera);
+		owner.getRender().renderCollisionShape(location, g, camera);
 
 		g.setColor(Color.black);
 		Vector2D avoidForce = location.add(owner.getMovingComponent().avoidForce.mult(10));
-		g.drawLine((float) location.x, (float) location.y, (float) avoidForce.x, (float) avoidForce.y);
+		g.drawLine((float) (location.x - camera.getCamX()), (float) (location.y - camera.getCamY()), (float) (avoidForce.x - camera.getCamX()),
+				(float) (avoidForce.y - camera.getCamY()));
 
 		g.setColor(Color.blue);
-		g.draw(owner.getMovingComponent().aheadCircle);
+		owner.getMovingComponent().aheadCircle2.setCenterX((float) (location.x - camera.getCamX()));
+		owner.getMovingComponent().aheadCircle2.setCenterY((float) (location.y - camera.getCamY()));
 		g.draw(owner.getMovingComponent().aheadCircle2);
+		owner.getMovingComponent().aheadCircle2.setCenterX((float) (location.x + camera.getCamX()));
+		owner.getMovingComponent().aheadCircle2.setCenterY((float) (location.y + camera.getCamY()));
 	}
 
 	@Override

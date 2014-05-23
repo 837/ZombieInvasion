@@ -4,6 +4,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Components.LifeComponent;
 import ch.zombieInvasion.Components.MovementInputComponent;
 import ch.zombieInvasion.Components.MovingComponent;
@@ -32,8 +33,8 @@ public class Player implements Entity {
 	}
 
 	@Override
-	public void render(Graphics g, double extrapolation) {
-		stateMachine.Render(g, extrapolation);
+	public void render(Graphics g, double extrapolation, Camera camera) {
+		stateMachine.Render(g, extrapolation, camera);
 	}
 
 	@Override

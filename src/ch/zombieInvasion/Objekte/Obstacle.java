@@ -8,10 +8,12 @@ import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Transform;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.util.Vector2D;
 
 public class Obstacle implements Entity {
 	private Shape shape;
+
 	public Obstacle(Vector2D location, float height, float width, boolean circle) {
 		if (circle) {
 			this.shape = new Circle((float) location.x, (float) location.y, Math.min(width, height));
@@ -25,8 +27,13 @@ public class Obstacle implements Entity {
 	}
 
 	@Override
-	public void render(Graphics g, double extrapolation) {
+	public void render(Graphics g, double extrapolation, Camera camera) {
+		shape.setCenterX((float) (shape.getCenterX() - camera.getCamX()));
+		shape.setCenterY((float) (shape.getCenterY() - camera.getCamY()));
 		g.draw(shape);
+		shape.setCenterX((float) (shape.getCenterX() + camera.getCamX()));
+		shape.setCenterY((float) (shape.getCenterY() + camera.getCamY()));
+
 	}
 
 	@Override

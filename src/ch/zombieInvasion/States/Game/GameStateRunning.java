@@ -10,6 +10,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.TrueTypeFont;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
 import ch.zombieInvasion.Eventhandling.EventType;
 import ch.zombieInvasion.Objekte.Obstacle;
@@ -38,7 +39,8 @@ public class GameStateRunning implements BaseState<Game> {
 	public void Update(Game owner, Game game) {
 		loops = 0;
 		while (System.currentTimeMillis() > next_game_tick && loops < MAX_FRAMESKIP) {
-			owner.eManager.Update(game);
+			owner.world.Update(game);
+
 			EventDispatcher.dispatchEvents();
 			next_game_tick += SKIP_TICKS;
 			loops++;
@@ -46,18 +48,20 @@ public class GameStateRunning implements BaseState<Game> {
 		if (next_game_tick > System.currentTimeMillis() + SKIP_TICKS) {
 			next_game_tick = System.currentTimeMillis() + SKIP_TICKS;
 		}
+		Vector2D mouseStart = new Vector2D(game.container.getInput().getAbsoluteMouseX() + game.camera.getCamX(), game.container.getInput()
+				.getAbsoluteMouseY() + game.camera.getCamY());
+		
 		if (game.container.getInput().isKeyPressed(Input.KEY_H)) {
 			IntStream.range(0, 10).forEach(
-					e -> game.eManager.addZombie(new Zombie(new Vector2D(new Random().nextInt(100) + 150, new Random().nextInt(100) + 150))));
+					e -> game.world.eManager.addZombie(new Zombie(new Vector2D(new Random().nextInt(100) + mouseStart.x, new Random().nextInt(100) + mouseStart.y))));
 		}
 		if (game.container.getInput().isKeyPressed(Input.KEY_G)) {
 			EventDispatcher.createEvent(0, EventType.KILL_ALL_ZOMBIES, null);
 		}
 
 		if (game.container.getInput().isKeyPressed(Input.KEY_I)) {
-			Vector2D mouseStart = new Vector2D(game.container.getInput().getMouseX(), game.container.getInput().getMouseY());
 			Obstacle ob = new Obstacle(mouseStart, QUADSIZE, QUADSIZE, circle);
-			game.eManager.addObstacle(ob);
+			game.world.eManager.addObstacle(ob);
 		}
 
 		if (game.container.getInput().isKeyPressed(Input.KEY_U)) {
@@ -65,25 +69,23 @@ public class GameStateRunning implements BaseState<Game> {
 		}
 
 		if (game.container.getInput().isKeyPressed(Input.KEY_O)) {
-			Vector2D mouseStart = new Vector2D(game.container.getInput().getMouseX(), game.container.getInput().getMouseY());
 			for (int i = 0; i < 500; i += QUADSIZE) {
 				Obstacle ob = new Obstacle(mouseStart.add(new Vector2D(i, 0)), QUADSIZE, QUADSIZE, circle);
-				game.eManager.addObstacle(ob);
+				game.world.eManager.addObstacle(ob);
 			}
 
 		}
 
 		if (game.container.getInput().isKeyPressed(Input.KEY_P)) {
-			Vector2D mouseStart = new Vector2D(game.container.getInput().getMouseX(), game.container.getInput().getMouseY());
 			for (int i = 0; i < 500; i += QUADSIZE) {
 				Obstacle ob = new Obstacle(mouseStart.add(new Vector2D(0, i)), QUADSIZE, QUADSIZE, circle);
-				game.eManager.addObstacle(ob);
+				game.world.eManager.addObstacle(ob);
 			}
 
 		}
 
 		if (game.container.getInput().isKeyPressed(Input.KEY_DELETE)) {
-			game.eManager.deleteAll();
+			game.world.eManager.deleteAll();
 
 		}
 
@@ -102,13 +104,14 @@ public class GameStateRunning implements BaseState<Game> {
 		}
 
 		if (game.container.getInput().isKeyDown(Input.KEY_LCONTROL) && game.container.getInput().isKeyDown(Input.KEY_Z)) {
-			if (game.eManager.getObstacle().size() > 0) {
+			if (game.world.eManager.getObstacle().size() > 0) {
 				ArrayList<Object> addInfo = new ArrayList<>();
-				addInfo.add(game.eManager.getObstacle().get(game.eManager.getObstacle().size() - 1));
+				addInfo.add(game.world.eManager.getObstacle().get(game.world.eManager.getObstacle().size() - 1));
 				EventDispatcher.createEvent(0, EventType.DELETE_ME, addInfo);
 			}
 		}
-		System.out.println(game.eManager.getZombies().size());
+
+		// System.out.println(game.world.eManager.getZombies().size());
 		extrapolation = (System.currentTimeMillis() + SKIP_TICKS - next_game_tick) / SKIP_TICKS;
 		if (extrapolation > 1) {
 			extrapolation = 1;
@@ -116,8 +119,8 @@ public class GameStateRunning implements BaseState<Game> {
 	}
 
 	@Override
-	public void Render(Game owner, Graphics g, double extrapolationHereUnused) {
-		owner.eManager.Render(g, extrapolation);
+	public void Render(Game owner, Graphics g, double extrapolationHereUnused, Camera cameraHereUnused) {
+		owner.world.Render(g, extrapolation, owner.camera);
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package ch.zombieInvasion.States;
 import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Game;
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Eventhandling.Event;
 import ch.zombieInvasion.util.LOGGER;
 
@@ -51,11 +52,11 @@ public class StateMachine<entity_typ> {
 		currentState.Update(owner, game);
 	}
 
-	public void Render(Graphics g, double extrapolation) {
+	public void Render(Graphics g, double extrapolation, Camera camera) {
 		if (globalState != null) {
-			globalState.Render(owner, g, extrapolation);
+			globalState.Render(owner, g, extrapolation, camera);
 		}
-		currentState.Render(owner, g, extrapolation);
+		currentState.Render(owner, g, extrapolation, camera);
 	}
 
 	public void RevertToPreviousState() {
