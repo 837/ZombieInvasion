@@ -32,6 +32,20 @@ public class EventDispatcher {
 		}
 	}
 
+	static public void createEvent(long delayMillis, EventType msg, Object additonalInfo) {
+		Event event = new Event(delayMillis, msg, additonalInfo);
+		if (delayMillis == 0.0) {
+			messagesQueue.add(event);
+		} else if (delayMillis < 0.0) {
+			event.setPersistent(true);
+			messagesQueue.add(event);
+		} else {
+			long currentTime = System.currentTimeMillis();
+			event.setDelayMillis(currentTime + delayMillis);
+			messagesQueue.add(event);
+		}
+	}
+
 	static public void dispatchEvents() {
 		long currentTime = System.currentTimeMillis();
 		currentEvents.clear();

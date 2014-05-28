@@ -162,4 +162,22 @@ public class Vector2D {
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 
+	/**
+	 * returns the angle between to vectors
+	 * 
+	 * A couple things to note here:
+	 * 
+	 * If two vectors (A-> and B-> ) are orthogonal (i.e. perpendicular), the dot
+	 * product (A-> *B-> ) is equal to 0.
+	 * 
+	 * If two vectors are unit vectors, then the dot product is simply equal to
+	 * cosine of the angle between them, i.e. A-> * B-> = cos() if A-> and B-> are
+	 * of length 1.
+	 */
+	static public double angleBetween(Vector2D v1, Vector2D v2) {
+		double dot = v1.dotP(v2);
+		double theta = Math.acos(dot / (v1.mag() * v2.mag()));
+		return theta;
+	}
+
 }

@@ -26,7 +26,7 @@ public class Player implements Entity {
 		stateMachine = new StateMachine<Player>(this);
 		stateMachine.SetCurrentState(new NormalPlayerState());
 
-		movement = new MovingComponent(location, 1, 5);
+		movement = new MovingComponent(location, 1, 8);
 		movementInputComponent = new MovementInputComponent();
 		render = new RenderComponent(Images.player);
 		life = new LifeComponent(100);

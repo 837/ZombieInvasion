@@ -18,7 +18,7 @@ public class Game extends BasicGame {
 	public Camera camera;
 
 	public Game() {
-		super("Zombie Invasion Alpha 2.1");
+		super("Zombie Invasion Alpha 3.0");
 	}
 
 	public static void main(String[] args) throws SlickException {

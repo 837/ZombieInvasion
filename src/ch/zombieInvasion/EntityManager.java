@@ -54,10 +54,8 @@ public class EntityManager {
 
 	public void update(List<? extends Entity> l, Game game) {
 		EventDispatcher.getEvents().stream().filter(e -> e.getEvent() == EventType.DELETE_ME).forEach(e -> {
-			l.remove(e.getAdditionalInfos().get(0));
+			l.remove(e.getAdditionalInfo());
 		});
-		// l.removeAll(l.stream().filter(e ->
-		// Entity.disappeard).collect(Collectors.toCollection(ArrayList::new)));
 		l.stream().forEach(e -> e.update(game));
 	}
 

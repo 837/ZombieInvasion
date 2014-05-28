@@ -8,10 +8,10 @@ import ch.zombieInvasion.Eventhandling.EventType;
 import ch.zombieInvasion.util.Vector2D;
 
 public class MovementInputComponent {
-	private int up = Input.KEY_W;
-	private int left = Input.KEY_A;
-	private int down = Input.KEY_S;
-	private int right = Input.KEY_D;
+	private int up = Input.KEY_UP;
+	private int left = Input.KEY_LEFT;
+	private int down = Input.KEY_DOWN;
+	private int right = Input.KEY_RIGHT;
 
 	public MovementInputComponent() {
 	}
@@ -33,19 +33,19 @@ public class MovementInputComponent {
 		double y = 0;
 
 		if (input.isKeyDown(up)) {
-			y -= 1;
+			y -= 10;
 		}
 
 		if (input.isKeyDown(left)) {
-			x -= 1;
+			x -= 10;
 		}
 
 		if (input.isKeyDown(down)) {
-			y += 1;
+			y += 10;
 		}
 
 		if (input.isKeyDown(right)) {
-			x += 1;
+			x += 10;
 		}
 
 		return new Vector2D(x, y).normalize();

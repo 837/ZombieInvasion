@@ -7,11 +7,18 @@ public class Event {
 	private long delayMillis;
 	private boolean persistent = false;
 	private ArrayList<Object> additionalInfos;
+	private Object additionalInfo;
 
 	public Event(long delayMillis, EventType event, ArrayList<Object> additionalInfos) {
 		this.event = event;
 		this.delayMillis = delayMillis;
 		this.additionalInfos = additionalInfos;
+	}
+
+	public Event(long delayMillis, EventType event, Object additionalInfo) {
+		this.event = event;
+		this.delayMillis = delayMillis;
+		this.additionalInfo = additionalInfo;
 	}
 
 	public EventType getEvent() {
@@ -28,6 +35,10 @@ public class Event {
 
 	public ArrayList<Object> getAdditionalInfos() {
 		return additionalInfos;
+	}
+
+	public Object getAdditionalInfo() {
+		return additionalInfo;
 	}
 
 	public void setDelayMillis(long delayMillis) {

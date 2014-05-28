@@ -18,27 +18,21 @@ public class StateMachine<entity_typ> {
 		this.currentState = null;
 		this.previousState = null;
 		this.globalState = null;
-		LOGGER.LOG("Creating StateMachine: " + owner.getClass().getSimpleName());
 	}
 
 	public void SetCurrentState(BaseState<entity_typ> state) {
 		this.currentState = state;
-		LOGGER.LOG(owner.getClass().getSimpleName() + " SetCurrentState: " + state.getClass().getSimpleName());
 	}
 
 	public void SetPreviousState(BaseState<entity_typ> state) {
 		this.previousState = state;
-		LOGGER.LOG(owner.getClass().getSimpleName() + " SetPreviousState: " + state.getClass().getSimpleName());
 	}
 
 	public void SetGlobalState(BaseState<entity_typ> state) {
 		this.globalState = state;
-		LOGGER.LOG(owner.getClass().getSimpleName() + " SetGlobalState: " + state.getClass().getSimpleName());
 	}
 
 	public void ChangeState(BaseState<entity_typ> newState) {
-		LOGGER.LOG(owner.getClass().getSimpleName() + " ChangeState: " + newState.getClass().getSimpleName());
-
 		previousState = currentState;
 		currentState.Exit(owner);
 		currentState = newState;

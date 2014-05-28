@@ -9,7 +9,7 @@ import ch.zombieInvasion.Components.MovingComponent;
 import ch.zombieInvasion.Components.RenderComponent;
 import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.States.StateMachine;
-import ch.zombieInvasion.States.Zombie.AgressivZombieState;
+import ch.zombieInvasion.States.Zombie.NormalZombieState;
 import ch.zombieInvasion.States.Zombie.ZombieGlobalState;
 import ch.zombieInvasion.util.Images;
 import ch.zombieInvasion.util.Vector2D;
@@ -22,10 +22,10 @@ public class Zombie implements Entity {
 
 	public Zombie(Vector2D location) {
 		stateMachine = new StateMachine<Zombie>(this);
-		stateMachine.SetCurrentState(new AgressivZombieState());
+		stateMachine.SetCurrentState(new NormalZombieState());
 		stateMachine.SetGlobalState(new ZombieGlobalState());
 		render = new RenderComponent(Images.normalZombie);
-		movement = new MovingComponent(location, 10, 0.8);
+		movement = new MovingComponent(location, 1, 3);
 		life = new LifeComponent(10);
 	}
 
