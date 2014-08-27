@@ -2,14 +2,10 @@ package ch.zombieInvasion.Effekte;
 
 import java.io.IOException;
 
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleIO;
 import org.newdawn.slick.particles.ParticleSystem;
 
-import ch.zombieInvasion.Game;
-import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.util.LOGGER;
 
 public class Emitter {

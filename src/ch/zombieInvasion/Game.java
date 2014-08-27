@@ -18,15 +18,11 @@ public class Game extends BasicGame {
 	public Camera camera;
 
 	public Game() {
-		super("Zombie Invasion Alpha 3.0");
+		super("Zombie Invasion Alpha 3.0.1");
 	}
 
 	public static void main(String[] args) throws SlickException {
-		// Game container kreieren
 		AppGameContainer container = new AppGameContainer(new Game());
-		// grösse bildschirm variabel
-		// container.setDisplayMode(container.getScreenWidth(),
-		// container.getScreenHeight(), true);
 
 		container.setDisplayMode(1280, 768, false);
 		container.setVSync(false);
@@ -45,7 +41,7 @@ public class Game extends BasicGame {
 		this.container = container;
 		world = new World();
 		camera = new Camera(container.getWidth(), container.getHeight());
-		camera.setMapData(world.map.getWidth()*32, world.map.getHeight()*32);
+		camera.setMapData(world.map.getWidth()*world.map.getTileWidth(), world.map.getHeight()*world.map.getTileHeight());
 	}
 
 	@Override

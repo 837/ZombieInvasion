@@ -1,6 +1,7 @@
 package ch.zombieInvasion.States.Player;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -9,13 +10,18 @@ import org.newdawn.slick.Input;
 import ch.zombieInvasion.Game;
 import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
+import ch.zombieInvasion.Eventhandling.EventType;
 import ch.zombieInvasion.Objekte.Player;
 import ch.zombieInvasion.States.BaseState;
+import ch.zombieInvasion.util.Timer;
 import ch.zombieInvasion.util.Vector2D;
 
 public class NormalPlayerState implements BaseState<Player> {
 	private Vector2D mousePos = new Vector2D(100, 100);
 	private ArrayDeque<Vector2D> movementQueue = new ArrayDeque<>();
+
+	// schüsse
+	private Timer t2 = new Timer();
 
 	@Override
 	public void Enter(Player owner) {
@@ -27,9 +33,24 @@ public class NormalPlayerState implements BaseState<Player> {
 		GameContainer container = game.container;
 
 		if (container.getInput().isMouseButtonDown(0) && container.getInput().isKeyDown(Input.KEY_LSHIFT)) {
-			owner.getMovingComponent().headTo(
-					new Vector2D(container.getInput().getAbsoluteMouseX() + game.camera.getCamX(), container.getInput().getAbsoluteMouseY()
-							+ game.camera.getCamY()));
+
+			Vector2D mouse = new Vector2D(container.getInput().getAbsoluteMouseX() + game.camera.getCamX(), container.getInput().getAbsoluteMouseY()
+					+ game.camera.getCamY());
+
+			owner.getMovingComponent().headTo(mouse);
+
+			if (game.container.getInput().isMouseButtonDown(0) && t2.getSeconds() >= 0.1) {
+				ArrayList<Object> additonalInfos = new ArrayList<>();
+
+				additonalInfos.add(game.world.eManager.getPlayer().get(0).getMovingComponent().getLocation());
+				additonalInfos.add(mouse.sub(game.world.eManager.getPlayer().get(0).getMovingComponent().getLocation()).normalize());
+
+				additonalInfos.add(8);
+				additonalInfos.add(1);
+				EventDispatcher.createEvent(0, EventType.FireAt, additonalInfos);
+				t2.restart();
+			}
+
 		}
 		if (!movementQueue.isEmpty()) {
 			if (mousePos.dist(owner.getMovingComponent().getLocation()) <= 10) {
@@ -50,13 +71,16 @@ public class NormalPlayerState implements BaseState<Player> {
 				break;
 				case MoveToPosQueued:
 					movementQueue.offer((Vector2D) e.getAdditionalInfo());
+					EventDispatcher.removePersistentEvent(e);
 					System.out.println("added movepos player");
 				break;
 				case MoveToPos:
 					movementQueue.clear();
 					mousePos = (Vector2D) e.getAdditionalInfo();
+					EventDispatcher.removePersistentEvent(e);
 					System.out.println("moveToPos");
 				break;
+
 			}
 		});
 	}

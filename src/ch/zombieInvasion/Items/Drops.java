@@ -1,6 +1,5 @@
 package ch.zombieInvasion.Items;
 
-import ch.zombieInvasion.util.Images;
 import ch.zombieInvasion.util.LOGGER;
 import ch.zombieInvasion.util.Vector2D;
 

@@ -3,8 +3,6 @@ package ch.zombieInvasion.Components;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
-import ch.zombieInvasion.Eventhandling.EventDispatcher;
-import ch.zombieInvasion.Eventhandling.EventType;
 import ch.zombieInvasion.util.Vector2D;
 
 public class MovementInputComponent {

@@ -25,8 +25,8 @@ public class Zombie implements Entity {
 		stateMachine.SetCurrentState(new NormalZombieState());
 		stateMachine.SetGlobalState(new ZombieGlobalState());
 		render = new RenderComponent(Images.normalZombie);
-		movement = new MovingComponent(location, 1, 3);
-		life = new LifeComponent(10);
+		movement = new MovingComponent(location, 1, 1);
+		life = new LifeComponent(1);
 	}
 
 	@Override

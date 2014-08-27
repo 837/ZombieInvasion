@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import ch.zombieInvasion.Items.Drop;
-import ch.zombieInvasion.Items.DropTyp;
-import ch.zombieInvasion.util.Images;
 import ch.zombieInvasion.util.Vector2D;
 
 public class DropComponent {

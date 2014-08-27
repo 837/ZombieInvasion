@@ -2,7 +2,6 @@ package ch.zombieInvasion;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.newdawn.slick.Graphics;
 
@@ -16,6 +15,7 @@ import ch.zombieInvasion.Objekte.Obstacle;
 import ch.zombieInvasion.Objekte.Player;
 import ch.zombieInvasion.Objekte.Tower;
 import ch.zombieInvasion.Objekte.Zivilist;
+import ch.zombieInvasion.Weapons.Bullet;
 import ch.zombieInvasion.Weapons.Weapon;
 import ch.zombieInvasion.Zombies.Zombie;
 
@@ -27,7 +27,8 @@ public class EntityManager {
 	private ArrayList<Tower> towers = new ArrayList<>();
 	private ArrayList<Helicopter> helicopter = new ArrayList<>();
 	private ArrayList<Player> player = new ArrayList<>();
-
+	private ArrayList<Bullet> bullets = new ArrayList<>();
+	
 	private ArrayList<Obstacle> obstacles = new ArrayList<>();
 
 	public void Update(Game game) {
@@ -39,6 +40,7 @@ public class EntityManager {
 		update(player, game);
 		update(obstacles, game); // doesn't need updates
 		update(helicopter, game);
+		update(bullets, game);
 	}
 
 	public void Render(Graphics g, double extrapolation, Camera camera) {
@@ -50,11 +52,13 @@ public class EntityManager {
 		render(player, g, extrapolation, camera);
 		render(obstacles, g, extrapolation, camera);
 		render(helicopter, g, extrapolation, camera);
+		render(bullets, g, extrapolation, camera);
 	}
 
 	public void update(List<? extends Entity> l, Game game) {
 		EventDispatcher.getEvents().stream().filter(e -> e.getEvent() == EventType.DELETE_ME).forEach(e -> {
 			l.remove(e.getAdditionalInfo());
+			EventDispatcher.removePersistentEvent(e);
 		});
 		l.stream().forEach(e -> e.update(game));
 	}
@@ -71,6 +75,7 @@ public class EntityManager {
 		towers = new ArrayList<>();
 		helicopter = new ArrayList<>();
 		obstacles = new ArrayList<>();
+		bullets = new ArrayList<>();
 	}
 
 	public void addDrop(Drop e) {
@@ -104,7 +109,9 @@ public class EntityManager {
 	public void addObstacle(Obstacle e) {
 		obstacles.add(e);
 	}
-
+	public void addBullet(Bullet e) {
+		bullets.add(e);
+	}
 	public ArrayList<Drop> getDrops() {
 		return drops;
 	}
@@ -135,5 +142,9 @@ public class EntityManager {
 
 	public ArrayList<Obstacle> getObstacle() {
 		return obstacles;
+	}
+	
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
 	}
 }
