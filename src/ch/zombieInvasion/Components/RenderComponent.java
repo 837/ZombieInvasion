@@ -47,7 +47,7 @@ public class RenderComponent {
 
 	}
 
-	public void renderShapes(Vector2D location, Graphics g, Camera camera) {
+	public void renderShape(Vector2D location, Graphics g, Camera camera) {
 		if (isVisible(location, camera)) {
 			g.setColor(Color.blue);
 			shapes.stream().filter(e -> e != shapes.get(0)).forEach(e -> {

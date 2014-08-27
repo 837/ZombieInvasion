@@ -18,7 +18,7 @@ import ch.zombieInvasion.util.Timer;
 import ch.zombieInvasion.util.Vector2D;
 
 public class GameStateRunning implements BaseState<Game> {
-	private final int TICKS_PER_SECOND = 30;
+	private final int TICKS_PER_SECOND = 50;
 	private final double timePerTick = 1000 / TICKS_PER_SECOND;
 	private final int MAX_FRAMESKIP = 5;
 	private double next_game_tick = System.currentTimeMillis();
@@ -118,7 +118,7 @@ public class GameStateRunning implements BaseState<Game> {
 			next_game_tick = System.currentTimeMillis();
 		}
 
-		extrapolation = (next_game_tick - System.currentTimeMillis()) / timePerTick;
+		extrapolation = 1 - (next_game_tick - System.currentTimeMillis()) / timePerTick;
 	}
 
 	@Override
