@@ -54136,3 +54136,252 @@ Wed Aug 27 22:45:31 CEST 2014
 
 Wed Aug 27 22:45:31 CEST 2014  Container start
 Wed Aug 27 22:45:34 CEST 2014  Calculated nodes and graph
+Thu Aug 28 19:20:24 CEST 2014  
+
+
+Thu Aug 28 19:20:24 CEST 2014  Container start
+Thu Aug 28 19:20:38 CEST 2014  
+
+
+Thu Aug 28 19:20:38 CEST 2014  Container start
+Thu Aug 28 19:21:21 CEST 2014  
+
+
+Thu Aug 28 19:21:21 CEST 2014  Container start
+Thu Aug 28 19:23:28 CEST 2014  
+
+
+Thu Aug 28 19:23:28 CEST 2014  Container start
+Thu Aug 28 19:24:15 CEST 2014  
+
+
+Thu Aug 28 19:24:15 CEST 2014  Container start
+Thu Aug 28 19:30:51 CEST 2014  
+
+
+Thu Aug 28 19:30:51 CEST 2014  Container start
+Thu Aug 28 19:31:24 CEST 2014  Calculated nodes and graph
+Thu Aug 28 19:31:45 CEST 2014  
+
+
+Thu Aug 28 19:31:45 CEST 2014  Container start
+Thu Aug 28 21:26:44 CEST 2014  
+
+
+Thu Aug 28 21:26:44 CEST 2014  Container start
+Thu Aug 28 21:26:47 CEST 2014  Calculated nodes and graph
+Thu Aug 28 21:27:08 CEST 2014  
+
+
+Thu Aug 28 21:27:08 CEST 2014  Container start
+Thu Aug 28 21:27:11 CEST 2014  Calculated nodes and graph
+Fri Aug 29 20:52:57 CEST 2014  
+
+
+Fri Aug 29 20:52:57 CEST 2014  Container start
+Fri Aug 29 20:53:00 CEST 2014  Calculated nodes and graph
+Fri Aug 29 20:55:47 CEST 2014  
+
+
+Fri Aug 29 20:55:47 CEST 2014  Container start
+Fri Aug 29 20:55:49 CEST 2014  Calculated nodes and graph
+Fri Aug 29 21:06:29 CEST 2014  
+
+
+Fri Aug 29 21:06:29 CEST 2014  Container start
+Fri Aug 29 21:06:32 CEST 2014  Calculated nodes and graph
+Fri Aug 29 21:08:56 CEST 2014  
+
+
+Fri Aug 29 21:08:56 CEST 2014  Container start
+Fri Aug 29 21:08:58 CEST 2014  Calculated nodes and graph
+Fri Aug 29 21:18:03 CEST 2014  
+
+
+Fri Aug 29 21:18:03 CEST 2014  Container start
+Fri Aug 29 21:18:06 CEST 2014  Calculated nodes and graph
+Fri Aug 29 21:18:18 CEST 2014  
+
+
+Fri Aug 29 21:18:18 CEST 2014  Container start
+Fri Aug 29 21:18:21 CEST 2014  Calculated nodes and graph
+Fri Aug 29 21:18:24 CEST 2014  
+
+
+Fri Aug 29 21:18:24 CEST 2014  Container start
+Fri Aug 29 21:18:27 CEST 2014  Calculated nodes and graph
+Fri Aug 29 21:19:23 CEST 2014  
+
+
+Fri Aug 29 21:19:23 CEST 2014  Container start
+Fri Aug 29 21:19:26 CEST 2014  Calculated nodes and graph
+Fri Aug 29 21:19:32 CEST 2014  
+
+
+Fri Aug 29 21:19:32 CEST 2014  Container start
+Fri Aug 29 21:19:35 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:04:53 CEST 2014  
+
+
+Sat Aug 30 16:04:53 CEST 2014  Container start
+Sat Aug 30 16:04:56 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:07:17 CEST 2014  
+
+
+Sat Aug 30 16:07:17 CEST 2014  Container start
+Sat Aug 30 16:07:20 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:07:50 CEST 2014  
+
+
+Sat Aug 30 16:07:50 CEST 2014  Container start
+Sat Aug 30 16:07:53 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:08:47 CEST 2014  
+
+
+Sat Aug 30 16:08:47 CEST 2014  Container start
+Sat Aug 30 16:08:50 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:24:02 CEST 2014  
+
+
+Sat Aug 30 16:24:02 CEST 2014  Container start
+Sat Aug 30 16:24:05 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:24:36 CEST 2014  
+
+
+Sat Aug 30 16:24:36 CEST 2014  Container start
+Sat Aug 30 16:24:39 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:25:20 CEST 2014  
+
+
+Sat Aug 30 16:25:20 CEST 2014  Container start
+Sat Aug 30 16:25:22 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:26:33 CEST 2014  
+
+
+Sat Aug 30 16:26:33 CEST 2014  Container start
+Sat Aug 30 16:26:36 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:26:57 CEST 2014  
+
+
+Sat Aug 30 16:26:57 CEST 2014  Container start
+Sat Aug 30 16:26:59 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:28:06 CEST 2014  
+
+
+Sat Aug 30 16:28:06 CEST 2014  Container start
+Sat Aug 30 16:28:09 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:29:31 CEST 2014  
+
+
+Sat Aug 30 16:29:31 CEST 2014  Container start
+Sat Aug 30 16:29:34 CEST 2014  Calculated nodes and graph
+Sat Aug 30 16:35:10 CEST 2014  
+
+
+Sat Aug 30 16:35:10 CEST 2014  Container start
+Sat Aug 30 16:35:12 CEST 2014  Calculated nodes and graph
+Sun Aug 31 20:22:26 CEST 2014  
+
+
+Sun Aug 31 20:22:26 CEST 2014  Container start
+Sun Aug 31 20:22:29 CEST 2014  Calculated nodes and graph
+Sun Aug 31 21:45:40 CEST 2014  
+
+
+Sun Aug 31 21:45:40 CEST 2014  Container start
+Sun Aug 31 21:45:43 CEST 2014  Calculated nodes and graph
+Sun Aug 31 21:46:25 CEST 2014  
+
+
+Sun Aug 31 21:46:25 CEST 2014  Container start
+Sun Aug 31 21:46:28 CEST 2014  Calculated nodes and graph
+Sun Aug 31 21:47:11 CEST 2014  
+
+
+Sun Aug 31 21:47:11 CEST 2014  Container start
+Sun Aug 31 21:47:14 CEST 2014  Calculated nodes and graph
+Sun Aug 31 21:48:05 CEST 2014  
+
+
+Sun Aug 31 21:48:05 CEST 2014  Container start
+Sun Aug 31 21:48:08 CEST 2014  Calculated nodes and graph
+Sun Aug 31 21:52:11 CEST 2014  
+
+
+Sun Aug 31 21:52:11 CEST 2014  Container start
+Sun Aug 31 21:52:14 CEST 2014  Calculated nodes and graph
+Sun Aug 31 21:53:01 CEST 2014  
+
+
+Sun Aug 31 21:53:01 CEST 2014  Container start
+Sun Aug 31 21:53:04 CEST 2014  Calculated nodes and graph
+Sun Aug 31 21:56:07 CEST 2014  
+
+
+Sun Aug 31 21:56:07 CEST 2014  Container start
+Sun Aug 31 21:56:09 CEST 2014  Calculated nodes and graph
+Sun Aug 31 21:58:04 CEST 2014  
+
+
+Sun Aug 31 21:58:04 CEST 2014  Container start
+Sun Aug 31 21:58:07 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:00:41 CEST 2014  
+
+
+Sun Aug 31 22:00:41 CEST 2014  Container start
+Sun Aug 31 22:00:44 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:01:16 CEST 2014  
+
+
+Sun Aug 31 22:01:16 CEST 2014  Container start
+Sun Aug 31 22:01:19 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:01:51 CEST 2014  
+
+
+Sun Aug 31 22:01:51 CEST 2014  Container start
+Sun Aug 31 22:01:54 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:02:36 CEST 2014  
+
+
+Sun Aug 31 22:02:36 CEST 2014  Container start
+Sun Aug 31 22:02:39 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:02:50 CEST 2014  
+
+
+Sun Aug 31 22:02:50 CEST 2014  Container start
+Sun Aug 31 22:02:53 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:03:44 CEST 2014  
+
+
+Sun Aug 31 22:03:44 CEST 2014  Container start
+Sun Aug 31 22:03:47 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:05:16 CEST 2014  
+
+
+Sun Aug 31 22:05:16 CEST 2014  Container start
+Sun Aug 31 22:05:19 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:07:00 CEST 2014  
+
+
+Sun Aug 31 22:07:00 CEST 2014  Container start
+Sun Aug 31 22:07:03 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:09:38 CEST 2014  
+
+
+Sun Aug 31 22:09:38 CEST 2014  Container start
+Sun Aug 31 22:09:40 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:11:29 CEST 2014  
+
+
+Sun Aug 31 22:11:29 CEST 2014  Container start
+Sun Aug 31 22:11:31 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:14:45 CEST 2014  
+
+
+Sun Aug 31 22:14:45 CEST 2014  Container start
+Sun Aug 31 22:14:48 CEST 2014  Calculated nodes and graph
+Sun Aug 31 22:16:53 CEST 2014  
+
+
+Sun Aug 31 22:16:53 CEST 2014  Container start
+Sun Aug 31 22:16:56 CEST 2014  Calculated nodes and graph

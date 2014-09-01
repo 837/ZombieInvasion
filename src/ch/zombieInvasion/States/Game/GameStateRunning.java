@@ -5,6 +5,7 @@ import java.util.stream.IntStream;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.MouseListener;
 
 import ch.zombieInvasion.Game;
 import ch.zombieInvasion.Camera.Camera;
@@ -18,7 +19,7 @@ import ch.zombieInvasion.util.Timer;
 import ch.zombieInvasion.util.Vector2D;
 
 public class GameStateRunning implements BaseState<Game> {
-	private final int TICKS_PER_SECOND = 50;
+	private final int TICKS_PER_SECOND = 30;
 	private final double timePerTick = 1000 / TICKS_PER_SECOND;
 	private final int MAX_FRAMESKIP = 5;
 	private double next_game_tick = System.currentTimeMillis();
@@ -27,6 +28,7 @@ public class GameStateRunning implements BaseState<Game> {
 
 	boolean spawning = false;
 	Timer t = new Timer();
+	Timer t2 = new Timer();
 
 	int gamelife = 10;
 
@@ -110,6 +112,79 @@ public class GameStateRunning implements BaseState<Game> {
 						}
 					});
 
+			owner.container.getInput().addMouseListener(new MouseListener() {
+
+				@Override
+				public void setInput(Input input) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public boolean isAcceptingInput() {
+					// TODO Auto-generated method stub
+					return true;
+				}
+
+				@Override
+				public void inputStarted() {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void inputEnded() {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseWheelMoved(int change) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseReleased(int button, int x, int y) {
+					if (button == 0) {
+						Vector2D additonalInfo = new Vector2D(x + game.camera.getCamX(), y + game.camera.getCamY());
+						EventDispatcher.createEvent(0, EventType.LeftUp, additonalInfo);
+					}
+
+				}
+
+				@Override
+				public void mousePressed(int button, int x, int y) {
+					if (button == 0) {
+						Vector2D additonalInfo = new Vector2D(x + game.camera.getCamX(), y + game.camera.getCamY());
+						EventDispatcher.createEvent(0, EventType.LeftDown, additonalInfo);
+					}
+				}
+
+				@Override
+				public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseDragged(int oldx, int oldy, int newx, int newy) {
+					if (t2.getSeconds() >= 0.1) {
+
+						Vector2D additonalInfo = new Vector2D(newx + game.camera.getCamX(), newy + game.camera.getCamY());
+						EventDispatcher.createEvent(0, EventType.LeftDrag, additonalInfo);
+						t2.restart();
+					}
+				}
+
+				@Override
+				public void mouseClicked(int button, int x, int y, int clickCount) {
+					// TODO Auto-generated method stub
+
+				}
+			});
+			owner.selector.Update(game);
+
 			next_game_tick += timePerTick;
 			loops++;
 		}
@@ -124,6 +199,7 @@ public class GameStateRunning implements BaseState<Game> {
 	@Override
 	public void Render(Game owner, Graphics g, double extrapolationHereUnused, Camera cameraHereUnused) {
 		owner.world.Render(g, extrapolation, owner.camera);
+		owner.selector.Render(g, extrapolationHereUnused, owner.camera);
 	}
 
 	@Override

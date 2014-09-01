@@ -45,7 +45,7 @@ public class NormalPlayerState implements BaseState<Player> {
 				additonalInfos.add(game.world.eManager.getPlayer().get(0).getMovingComponent().getLocation());
 				additonalInfos.add(mouse.sub(game.world.eManager.getPlayer().get(0).getMovingComponent().getLocation()).normalize());
 
-				additonalInfos.add(8);
+				additonalInfos.add(18);
 				additonalInfos.add(1);
 				EventDispatcher.createEvent(0, EventType.FireAt, additonalInfos);
 				t2.restart();

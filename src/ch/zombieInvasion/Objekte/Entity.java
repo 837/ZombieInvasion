@@ -7,7 +7,7 @@ import ch.zombieInvasion.Camera.Camera;
 
 public interface Entity {
 	boolean disappeard = false;
-
+	
 	abstract void render(Graphics g, double extrapolation, Camera camera);
 
 	abstract void update(Game game);
