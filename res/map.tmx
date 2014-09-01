@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="47" height="47" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tilea2" tilewidth="32" tileheight="32">
+  <image source="tilea2.png" trans="ff00ff" width="512" height="384"/>
+ </tileset>
+ <layer name="Background" width="47" height="47">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DQQ0AAAwDoat/0xOxLySsmqqqqqqqqqqqPh7mVoIhhCIAAA==
+  </data>
+ </layer>
+ <layer name="obstacles" width="47" height="47">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YUQ7CIBBE+9Mz9QB6Az2H9/+0iTYlGxZ2h1kstpPwU6V5hWFYWKaPXpNftT6tv5f6LN82os7GflvbXTybHf1y/REh7I+1PcUzC/vWL9cfkcZeGht03GvyzovGXhqb2rij3vDOC2utztPOz/aGJmbOMHzjUUvOSE+g7KjHWnJGegJlRz12Ns9oGp1dtkhF1jOM7yitXyt7aw3Suo5zsrJ7MiCXeREeivCMN0N75ntN3r2Lke+supq9d2lK2aNrpxH8ruli33WEtYrqCBmJysNuzSHtf79kt+aQdp4dwTMR9wi5d0b6PZVkR+8QUjHYZa5Y8oWxDzLYZa605ItnPqL3Ju8a9cxHD3aLkDq4x5nPIqQOjmAf9azdg3mTZLfcXZe8qbGzzjWpJLvl7rrmzRx/xLkGqcUsmcDwTm2ukFrMmgmt/LX3s9dq9HkjFZs9+ryR6ij7KqLe7Mys7M3OzMp/8ExUm4Pf/waMK7UQhCIAAA==
+  </data>
+ </layer>
+</map>
