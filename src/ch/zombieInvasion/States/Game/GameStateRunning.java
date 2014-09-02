@@ -61,8 +61,8 @@ public class GameStateRunning implements BaseState<Game> {
 			}
 
 			if (game.container.getInput().isMousePressed(1)) {
-				Vector2D additonalInfo = new Vector2D(game.container.getInput().getAbsoluteMouseX() + game.camera.getCamX(), game.container
-						.getInput().getAbsoluteMouseY() + game.camera.getCamY());
+				Vector2D additonalInfo = new Vector2D(game.camera.getWorldPosX(game.container.getInput().getAbsoluteMouseX()),
+						game.camera.getWorldPosY(game.container.getInput().getAbsoluteMouseY()));
 
 				if (game.container.getInput().isKeyDown(Input.KEY_LSHIFT)) {
 					EventDispatcher.createEvent(0, EventType.MoveToPosQueued, additonalInfo);
@@ -147,7 +147,7 @@ public class GameStateRunning implements BaseState<Game> {
 				@Override
 				public void mouseReleased(int button, int x, int y) {
 					if (button == 0) {
-						Vector2D additonalInfo = new Vector2D(x + game.camera.getCamX(), y + game.camera.getCamY());
+						Vector2D additonalInfo = new Vector2D(game.camera.getWorldPosX(x), game.camera.getWorldPosY(y));
 						EventDispatcher.createEvent(0, EventType.LeftUp, additonalInfo);
 					}
 
@@ -156,7 +156,7 @@ public class GameStateRunning implements BaseState<Game> {
 				@Override
 				public void mousePressed(int button, int x, int y) {
 					if (button == 0) {
-						Vector2D additonalInfo = new Vector2D(x + game.camera.getCamX(), y + game.camera.getCamY());
+						Vector2D additonalInfo = new Vector2D(game.camera.getWorldPosX(x), game.camera.getWorldPosY(y));
 						EventDispatcher.createEvent(0, EventType.LeftDown, additonalInfo);
 					}
 				}
@@ -171,7 +171,7 @@ public class GameStateRunning implements BaseState<Game> {
 				public void mouseDragged(int oldx, int oldy, int newx, int newy) {
 					if (t2.getSeconds() >= 0.1) {
 
-						Vector2D additonalInfo = new Vector2D(newx + game.camera.getCamX(), newy + game.camera.getCamY());
+						Vector2D additonalInfo = new Vector2D(game.camera.getWorldPosX(newx), game.camera.getWorldPosY(newy));
 						EventDispatcher.createEvent(0, EventType.LeftDrag, additonalInfo);
 						t2.restart();
 					}

@@ -84,24 +84,16 @@ public class Selector {
 		drawRect(g, camera);
 	}
 
+	private Rectangle makeRectFromCorners(Vector2D first, Vector2D second) {
+		return new Rectangle((float) Math.min(first.x, second.x), (float) Math.min(first.y, second.y), (float) Math.abs(first.x - second.x),
+				(float) Math.abs(first.y - second.y));
+	}
+
 	private void drawRect(Graphics g, Camera camera) {
-		int tx1 = (int) (firstClickX - camera.getCamX());
-		int ty1 = (int) (firstClickY - camera.getCamY());
-		int tx2 = (int) (secondClickX - camera.getCamX());
-		int ty2 = (int) (secondClickY - camera.getCamY());
+		Vector2D one = new Vector2D(camera.getWorldPosX(firstClickX), camera.getWorldPosY(firstClickY));
+		Vector2D two = new Vector2D(camera.getWorldPosX(secondClickX), camera.getWorldPosY(secondClickY));
 
-		// Use Math. something abs()/min()
-		if (firstClickX > secondClickX) {
-			tx1 = (int) (secondClickX - camera.getCamX());
-			tx2 = (int) (firstClickX - camera.getCamX());
-		}
-		if (firstClickY > secondClickY) {
-			ty1 = (int) (secondClickY - camera.getCamY());
-			ty2 = (int) (firstClickY - camera.getCamY());
-		}
-		// Rectangle r = new Rectangle(tx1, ty1, tx2 - tx1, ty2 - ty1);
-
-		g.fillRect(tx1, ty1, tx2 - tx1, ty2 - ty1);
+		g.fill(makeRectFromCorners(one, two));
 
 	}
 }

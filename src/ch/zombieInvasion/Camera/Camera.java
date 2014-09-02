@@ -50,6 +50,14 @@ public class Camera {
 		return new Vector2D(position.x - viewport_size_X / 2, position.y - viewport_size_Y / 2);
 	}
 
+	public double getWorldPosX(double x) {
+		return x - getPosition().x;
+	}
+
+	public double getWorldPosY(double y) {
+		return y - getPosition().y;
+	}
+
 	/**
 	 * MUSS ICH NOCH ÄNDERN
 	 * 
