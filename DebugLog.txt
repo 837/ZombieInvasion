@@ -3,3 +3,18 @@ Tue Sep 02 22:42:41 CEST 2014
 
 Tue Sep 02 22:42:41 CEST 2014  Container start
 Tue Sep 02 22:42:44 CEST 2014  Calculated nodes and graph
+Thu Sep 04 19:12:39 CEST 2014  
+
+
+Thu Sep 04 19:12:39 CEST 2014  Container start
+Thu Sep 04 19:12:42 CEST 2014  Calculated nodes and graph
+Thu Sep 04 19:13:25 CEST 2014  
+
+
+Thu Sep 04 19:13:25 CEST 2014  Container start
+Thu Sep 04 19:13:28 CEST 2014  Calculated nodes and graph
+Thu Sep 04 19:14:56 CEST 2014  
+
+
+Thu Sep 04 19:14:56 CEST 2014  Container start
+Thu Sep 04 19:14:58 CEST 2014  Calculated nodes and graph

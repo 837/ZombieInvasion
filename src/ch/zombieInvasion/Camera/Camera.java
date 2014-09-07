@@ -22,7 +22,8 @@ public class Camera {
 	}
 
 	public void setPosition(Vector2D point) {
-		position = new Vector2D(checkOffset(offsetMinX, offsetMaxX, point.x), checkOffset(offsetMinY, offsetMaxY, point.y));
+		position = new Vector2D(checkOffset(offsetMinX, offsetMaxX, point.x), checkOffset(offsetMinY, offsetMaxY,
+				point.y));
 	}
 
 	public void move(Vector2D direction) {
@@ -51,11 +52,11 @@ public class Camera {
 	}
 
 	public double getWorldPosX(double x) {
-		return x - getPosition().x;
+		return x + getPosition().x;
 	}
 
 	public double getWorldPosY(double y) {
-		return y - getPosition().y;
+		return y + getPosition().y;
 	}
 
 	/**

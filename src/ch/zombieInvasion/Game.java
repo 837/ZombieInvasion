@@ -29,7 +29,7 @@ public class Game extends BasicGame {
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer container = new AppGameContainer(new Game());
 
-		container.setDisplayMode(1500, 1000, false);
+		container.setDisplayMode(1280, 780, false);
 		container.setVSync(false);
 		container.setUpdateOnlyWhenVisible(false);
 		container.setClearEachFrame(true);
@@ -46,7 +46,8 @@ public class Game extends BasicGame {
 		this.container = container;
 		world = new World();
 		camera = new Camera(container.getWidth(), container.getHeight());
-		camera.setMapData(world.map.getWidth() * world.map.getTileWidth(), world.map.getHeight() * world.map.getTileHeight());
+		camera.setMapData(world.map.getWidth() * world.map.getTileWidth(),
+				world.map.getHeight() * world.map.getTileHeight());
 		selector = new Selector();
 	}
 

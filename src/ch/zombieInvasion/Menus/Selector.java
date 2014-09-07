@@ -58,7 +58,7 @@ public class Selector {
 				case LeftDown:
 					Vector2D clickPos = (Vector2D) e.getAdditionalInfo();
 					setSelection(clickPos);
-					System.out.println("LeftDown");
+					//System.out.println("LeftDown");
 					EventDispatcher.removePersistentEvent(e);
 				break;
 				case LeftUp:
@@ -66,13 +66,13 @@ public class Selector {
 					Vector2D clickPos2 = (Vector2D) e.getAdditionalInfo();
 					setSelection(clickPos2);
 					firstPos = true;
-					System.out.println("LeftUp");
+					//System.out.println("LeftUp");
 					EventDispatcher.removePersistentEvent(e);
 				break;
 				case LeftDrag:
 					Vector2D clickPos1 = (Vector2D) e.getAdditionalInfo();
 					setSelection(clickPos1);
-					System.out.println("LeftDrag");
+					//System.out.println("LeftDrag");
 					EventDispatcher.removePersistentEvent(e);
 				break;
 			}

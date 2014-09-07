@@ -30,7 +30,7 @@ public class World {
 
 		calculateNodesAndGraph();
 		updatePath(new Vector2D(Math.round(map.getWidth() / 2), map.getHeight()));
-		
+
 	}
 
 	public void Update(Game game) {
@@ -60,10 +60,12 @@ public class World {
 		renderMap(camera, extrapolation);
 		eManager.Render(g, extrapolation, camera);
 		if (draw) {
-			all_nodes.stream().forEach(e -> {
-				g.setColor(Color.black);
-				g.drawString(e.getDistance() + "", (float) (e.getX() * 32 - camera.getCamX() + 5), (float) (e.getY() * 32 - camera.getCamY() + 5));
-			});
+			all_nodes.stream().forEach(
+					e -> {
+						g.setColor(Color.black);
+						g.drawString(e.getDistance() + "", (float) (e.getX() * 32 - camera.getCamX() + 5),
+								(float) (e.getY() * 32 - camera.getCamY() + 5));
+					});
 		}
 	}
 
@@ -134,7 +136,8 @@ public class World {
 		int[][] dirs = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
 
 		for (int i = 0; i < dirs.length; i++) {
-			neighbor = new Node((e.getX() + dirs[i][0]) + "" + (e.getY() + dirs[i][1]), e.getX() + dirs[i][0], e.getY() + dirs[i][1]);
+			neighbor = new Node((e.getX() + dirs[i][0]) + "" + (e.getY() + dirs[i][1]), e.getX() + dirs[i][0], e.getY()
+					+ dirs[i][1]);
 			for (int j = 0; j < all_nodes.size(); j++) {
 				Node currentNode = all_nodes.get(j);
 				if (currentNode.getX() == neighbor.getX() && currentNode.getY() == neighbor.getY()) {
