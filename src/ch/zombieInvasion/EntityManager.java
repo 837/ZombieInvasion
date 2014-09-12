@@ -28,7 +28,7 @@ public class EntityManager {
 	private ArrayList<Helicopter> helicopter = new ArrayList<>();
 	private ArrayList<Player> player = new ArrayList<>();
 	private ArrayList<Bullet> bullets = new ArrayList<>();
-	
+
 	private ArrayList<Obstacle> obstacles = new ArrayList<>();
 
 	public void Update(Game game) {
@@ -109,9 +109,11 @@ public class EntityManager {
 	public void addObstacle(Obstacle e) {
 		obstacles.add(e);
 	}
+
 	public void addBullet(Bullet e) {
 		bullets.add(e);
 	}
+
 	public ArrayList<Drop> getDrops() {
 		return drops;
 	}
@@ -143,7 +145,7 @@ public class EntityManager {
 	public ArrayList<Obstacle> getObstacle() {
 		return obstacles;
 	}
-	
+
 	public ArrayList<Bullet> getBullets() {
 		return bullets;
 	}

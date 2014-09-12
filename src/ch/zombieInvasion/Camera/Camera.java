@@ -48,21 +48,27 @@ public class Camera {
 	}
 
 	public Vector2D getPosition() {
+	// System.out.println(position.x + "  " + position.y);
 		return new Vector2D(position.x - viewport_size_X / 2, position.y - viewport_size_Y / 2);
 	}
 
 	public double getWorldPosX(double x) {
-		return x + getPosition().x;
+	  System.out.println("X: " + x + "  " + getPosition().x);
+		return (x + getPosition().x);
 	}
 
 	public double getWorldPosY(double y) {
-		return y + getPosition().y;
+	  System.out.println("Y: " + y + "  " + getPosition().y);
+		return (y + getPosition().y);
 	}
 
+	public Vector2D getPositionInWorld(Vector2D screenPos) {
+	  return screenPos.add(getPosition());
+	}
 	/**
-	 * MUSS ICH NOCH ÄNDERN
+	 * MUSS ICH NOCH Ã¤NDERN
 	 * 
-	 * @return ÄNDERN
+	 * @return Ã¤NDERN
 	 */
 	@Deprecated
 	public double getCamX() {
@@ -70,9 +76,9 @@ public class Camera {
 	}
 
 	/**
-	 * MUSS ICH NOCH ÄNDERN
+	 * MUSS ICH NOCH Ã¤NDERN
 	 * 
-	 * @return ÄNDERN
+	 * @return Ã¤NDERN
 	 */
 	@Deprecated
 	public double getCamY() {
