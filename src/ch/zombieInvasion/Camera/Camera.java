@@ -1,4 +1,3 @@
-
 package ch.zombieInvasion.Camera;
 
 import ch.zombieInvasion.util.Vector2D;

@@ -1,4 +1,3 @@
-
 package ch.zombieInvasion;
 
 import org.newdawn.slick.AppGameContainer;

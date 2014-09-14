@@ -80,7 +80,7 @@ public class NormalPlayerState implements BaseState<Player> {
 				movementQueue.clear();
 				mousePos = (Vector2D) e.getAdditionalInfo();
 				EventDispatcher.removePersistentEvent(e);
-				// System.out.println("moveToPos");
+
 				break;
 
 			}
