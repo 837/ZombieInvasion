@@ -32,8 +32,9 @@ public class NormalBulletState implements BaseState<Bullet> {
 		owner.getMovingComponent().update();
 		//owner.getRender().updateShapePositions(owner.getMovingComponent().getLocation());
 		
-		if (t.getSeconds() >= 2.2) {
-			owner.getLife().addDamage(1);
+		//distanzbegrenzig
+		if (t.getSeconds() >= 1.2) {
+			owner.getLife().addDamage(9999);
 		}
 		if (owner.getLife().isDead()) {
 			EventDispatcher.createEvent(-1, EventType.DELETE_ME, owner);
@@ -49,7 +50,8 @@ public class NormalBulletState implements BaseState<Bullet> {
 		if (nodePos != null) {
 			getNeighbors(nodePos, game).stream().filter(e -> owner.getRender().getShape(0).intersects(e.getRender().getShape(0))).findFirst()
 					.ifPresent(e -> {
-						EventDispatcher.createEvent(-1, EventType.DELETE_ME, owner);
+						//EventDispatcher.createEvent(-1, EventType.DELETE_ME, owner);
+						owner.getLife().addDamage(1);
 						e.getLife().addDamage(1);
 						System.out.println("Shot hit target");
 					});

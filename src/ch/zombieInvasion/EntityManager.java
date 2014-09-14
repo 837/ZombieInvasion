@@ -76,6 +76,7 @@ public class EntityManager {
 		helicopter = new ArrayList<>();
 		obstacles = new ArrayList<>();
 		bullets = new ArrayList<>();
+		player = new ArrayList<>();
 	}
 
 	public void addDrop(Drop e) {

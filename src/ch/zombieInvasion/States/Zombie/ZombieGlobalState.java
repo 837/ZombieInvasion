@@ -20,18 +20,15 @@ public class ZombieGlobalState implements BaseState<Zombie> {
 	public void Update(Zombie owner, Game game) {
 		EventDispatcher.getEvents().forEach(e -> {
 			switch (e.getEvent()) {
-				case KILL_ALL_ZOMBIES:
-					if (game.selector.isSelected(owner)) {
-
-					}
-					System.out.println("WE ARE DEAD");
-					owner.getLife().addDamage(999999);
+			case KILL_ALL_ZOMBIES:
+				System.out.println("WE ARE DEAD");
+				owner.getLife().addDamage(999999);
 				break;
-				case KILL_SELECTED_ZOMBIES:
-					if (game.selector.isSelected(owner)) {
-						System.out.println("Selected Zombies died");
-						owner.getLife().addDamage(999999);
-					}
+			case KILL_SELECTED_ZOMBIES:
+				if (game.selector.isSelected(owner)) {
+					System.out.println("Selected Zombies died");
+					owner.getLife().addDamage(999999);
+				}
 
 				break;
 			}

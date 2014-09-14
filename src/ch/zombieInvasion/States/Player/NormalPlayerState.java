@@ -3,6 +3,7 @@ package ch.zombieInvasion.States.Player;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
+import org.lwjgl.Sys;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -20,7 +21,7 @@ public class NormalPlayerState implements BaseState<Player> {
 	private Vector2D mousePos = new Vector2D(100, 100);
 	private ArrayDeque<Vector2D> movementQueue = new ArrayDeque<>();
 
-	// schï¿½sse
+	// schüsse
 	private Timer t2 = new Timer();
 
 	@Override
@@ -34,12 +35,12 @@ public class NormalPlayerState implements BaseState<Player> {
 
 		if (container.getInput().isMouseButtonDown(0) && container.getInput().isKeyDown(Input.KEY_LSHIFT)) {
 
-			Vector2D mouse = new Vector2D(container.getInput().getAbsoluteMouseX() + game.camera.getCamX(), container
-					.getInput().getAbsoluteMouseY() + game.camera.getCamY());
+			Vector2D mouse = game.camera.getPositionInWorld(new Vector2D(container.getInput().getAbsoluteMouseX(),
+					container.getInput().getAbsoluteMouseY()));
 
 			owner.getMovingComponent().headTo(mouse);
 
-			if (game.container.getInput().isMouseButtonDown(0) && t2.getSeconds() >= 0.1) {
+			if (game.container.getInput().isMouseButtonDown(0) && t2.getSeconds() >= 0.25) {
 				ArrayList<Object> additonalInfos = new ArrayList<>();
 
 				additonalInfos.add(game.world.eManager.getPlayer().get(0).getMovingComponent().getLocation());
@@ -67,6 +68,7 @@ public class NormalPlayerState implements BaseState<Player> {
 			case DMG_Player:
 				if (owner.getLife().isDead()) {
 					EventDispatcher.removePersistentEvent(e);
+					EventDispatcher.createEvent(0, EventType.Reset_Game, null);
 				}
 				System.out.println("DMG");
 				owner.getLife().addDamage((int) e.getAdditionalInfo());

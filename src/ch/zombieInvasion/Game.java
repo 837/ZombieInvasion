@@ -28,7 +28,7 @@ public class Game extends BasicGame {
 
 		container.setDisplayMode(1280, 780, false);
 		container.setVSync(false);
-		container.setUpdateOnlyWhenVisible(false);
+		container.setUpdateOnlyWhenVisible(true);
 		container.setClearEachFrame(true);
 
 		LOGGER.LOG("Container start");
@@ -46,7 +46,7 @@ public class Game extends BasicGame {
 		camera = new Camera(container.getWidth(), container.getHeight());
 		camera.setMapData(world.map.getWidth() * world.map.getTileWidth(),
 				world.map.getHeight() * world.map.getTileHeight());
-		//selector = new Selector();
+		selector = new Selector();
 	}
 
 	@Override
