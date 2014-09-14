@@ -1,3 +1,4 @@
+
 package ch.zombieInvasion;
 
 import org.newdawn.slick.AppGameContainer;
@@ -6,9 +7,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
-
-import sun.nio.ch.SelChImpl;
 import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Menus.Selector;
 import ch.zombieInvasion.States.StateMachine;
@@ -37,6 +35,7 @@ public class Game extends BasicGame {
 		LOGGER.LOG("Container start");
 		container.start();
 		LOGGER.LOG("Container exit");
+
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public class Game extends BasicGame {
 		camera = new Camera(container.getWidth(), container.getHeight());
 		camera.setMapData(world.map.getWidth() * world.map.getTileWidth(),
 				world.map.getHeight() * world.map.getTileHeight());
-		selector = new Selector();
+		//selector = new Selector();
 	}
 
 	@Override
