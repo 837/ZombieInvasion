@@ -9,7 +9,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 import ch.zombieInvasion.Camera.Camera;
-import ch.zombieInvasion.Objekte.Player;
 import ch.zombieInvasion.Pathfinding.Node;
 import ch.zombieInvasion.Pathfinding.PathFindAlgorithm;
 import ch.zombieInvasion.util.LOGGER;
@@ -25,8 +24,10 @@ public class World {
 
   public World() throws SlickException {
     eManager = new EntityManager();
-    eManager.addPlayer(new Player(new Vector2D(100, 100)));
+
     map = new TiledMap("res/map.tmx");
+
+
 
     calculateNodesAndGraph();
     updatePath(new Vector2D(Math.round(map.getWidth() / 2), map.getHeight()));
@@ -58,7 +59,6 @@ public class World {
   public void Render(Graphics g, double extrapolation, Camera camera) {
 
     renderMap(camera, extrapolation);
-    eManager.Render(g, extrapolation, camera);
     if (draw) {
       all_nodes.stream().forEach(e -> {
         g.setColor(Color.black);

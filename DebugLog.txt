@@ -48,3 +48,148 @@ Sun Sep 14 19:02:32 CEST 2014
 
 Sun Sep 14 19:02:32 CEST 2014  Container start
 Sun Sep 14 19:02:35 CEST 2014  Calculated nodes and graph
+Mon Sep 15 11:37:27 CEST 2014  
+
+
+Mon Sep 15 11:37:27 CEST 2014  Container start
+Mon Sep 15 11:37:30 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:08:48 CEST 2014  
+
+
+Wed Sep 17 11:08:48 CEST 2014  Container start
+Wed Sep 17 11:08:50 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:10:11 CEST 2014  
+
+
+Wed Sep 17 11:10:11 CEST 2014  Container start
+Wed Sep 17 11:10:12 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:28:15 CEST 2014  
+
+
+Wed Sep 17 11:28:15 CEST 2014  Container start
+Wed Sep 17 11:28:16 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:28:46 CEST 2014  
+
+
+Wed Sep 17 11:28:46 CEST 2014  Container start
+Wed Sep 17 11:28:47 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:29:16 CEST 2014  
+
+
+Wed Sep 17 11:29:16 CEST 2014  Container start
+Wed Sep 17 11:29:17 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:34:28 CEST 2014  
+
+
+Wed Sep 17 11:34:28 CEST 2014  Container start
+Wed Sep 17 11:34:29 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:39:29 CEST 2014  
+
+
+Wed Sep 17 11:39:29 CEST 2014  Container start
+Wed Sep 17 11:39:31 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:44:31 CEST 2014  
+
+
+Wed Sep 17 11:44:31 CEST 2014  Container start
+Wed Sep 17 11:44:33 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:45:21 CEST 2014  
+
+
+Wed Sep 17 11:45:21 CEST 2014  Container start
+Wed Sep 17 11:45:22 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:49:31 CEST 2014  
+
+
+Wed Sep 17 11:49:31 CEST 2014  Container start
+Wed Sep 17 11:49:32 CEST 2014  Calculated nodes and graph
+Wed Sep 17 11:51:53 CEST 2014  
+
+
+Wed Sep 17 11:51:53 CEST 2014  Container start
+Wed Sep 17 11:51:54 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:06:02 CEST 2014  
+
+
+Wed Sep 17 13:06:02 CEST 2014  Container start
+Wed Sep 17 13:06:03 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:07:01 CEST 2014  
+
+
+Wed Sep 17 13:07:01 CEST 2014  Container start
+Wed Sep 17 13:07:02 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:07:13 CEST 2014  
+
+
+Wed Sep 17 13:07:13 CEST 2014  Container start
+Wed Sep 17 13:07:14 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:07:34 CEST 2014  
+
+
+Wed Sep 17 13:07:34 CEST 2014  Container start
+Wed Sep 17 13:07:35 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:08:07 CEST 2014  
+
+
+Wed Sep 17 13:08:07 CEST 2014  Container start
+Wed Sep 17 13:08:07 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:46:12 CEST 2014  
+
+
+Wed Sep 17 13:46:12 CEST 2014  Container start
+Wed Sep 17 13:46:14 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:46:38 CEST 2014  
+
+
+Wed Sep 17 13:46:38 CEST 2014  Container start
+Wed Sep 17 13:46:40 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:47:37 CEST 2014  
+
+
+Wed Sep 17 13:47:37 CEST 2014  Container start
+Wed Sep 17 13:47:38 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:49:05 CEST 2014  
+
+
+Wed Sep 17 13:49:05 CEST 2014  Container start
+Wed Sep 17 13:49:06 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:49:48 CEST 2014  
+
+
+Wed Sep 17 13:49:48 CEST 2014  Container start
+Wed Sep 17 13:49:49 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:50:03 CEST 2014  
+
+
+Wed Sep 17 13:50:03 CEST 2014  Container start
+Wed Sep 17 13:50:04 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:55:07 CEST 2014  
+
+
+Wed Sep 17 13:55:07 CEST 2014  Container start
+Wed Sep 17 13:55:08 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:56:04 CEST 2014  
+
+
+Wed Sep 17 13:56:04 CEST 2014  Container start
+Wed Sep 17 13:56:05 CEST 2014  Calculated nodes and graph
+Wed Sep 17 13:56:31 CEST 2014  
+
+
+Wed Sep 17 13:56:31 CEST 2014  Container start
+Wed Sep 17 13:56:32 CEST 2014  Calculated nodes and graph
+Wed Sep 17 15:21:05 CEST 2014  
+
+
+Wed Sep 17 15:21:05 CEST 2014  Container start
+Wed Sep 17 15:21:06 CEST 2014  Calculated nodes and graph
+Wed Sep 17 15:22:58 CEST 2014  
+
+
+Wed Sep 17 15:22:58 CEST 2014  Container start
+Wed Sep 17 15:22:59 CEST 2014  Calculated nodes and graph
+Wed Sep 17 15:26:01 CEST 2014  
+
+
+Wed Sep 17 15:26:01 CEST 2014  Container start
+Wed Sep 17 15:26:02 CEST 2014  Calculated nodes and graph

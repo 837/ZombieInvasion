@@ -6,7 +6,6 @@ import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
-import ch.zombieInvasion.Objekte.Obstacle;
 
 public class Util {
 	static Random rnd = new Random();
@@ -24,7 +23,7 @@ public class Util {
 		return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
 	}
 
-	public static final boolean lineIntersetcsShape(Obstacle obstacle, Vector2D start, Vector2D end) {
-		return obstacle.get().contains(new Line(new Vector2f((float) start.x, (float) start.y), new Vector2f((float) end.x, (float) end.y)));
-	}
+  public static String uniqueID() {
+    return java.util.UUID.randomUUID().toString();
+  }
 }

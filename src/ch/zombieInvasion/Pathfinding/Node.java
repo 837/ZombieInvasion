@@ -3,7 +3,7 @@ package ch.zombieInvasion.Pathfinding;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
-import ch.zombieInvasion.Zombies.Zombie;
+import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.util.Vector2D;
 
 public class Node {
@@ -13,7 +13,7 @@ public class Node {
 	private int distance = -1;
 	private int x = 0;
 	private int y = 0;
-	private ArrayDeque<Zombie> zombies = new ArrayDeque<>();
+	private ArrayDeque<Entity> entities = new ArrayDeque<>();
 
 	public Node(String name, int x, int y) {
 		this.name = name;
@@ -53,20 +53,20 @@ public class Node {
 		return y;
 	}
 
-	public void addZombie(Zombie o) {
-		zombies.add(o);
+	public void addEntity(Entity o) {
+		entities.add(o);
 	}
 
-	public void removeEntity(Zombie o) {
-		zombies.remove(o);
+	public void removeEntity(Entity o) {
+		entities.remove(o);
 	}
 
-	public ArrayDeque<Zombie> getZombies() {
-		return zombies;
+	public ArrayDeque<Entity> getEntities() {
+		return entities;
 	}
 
 	public void resetEntities() {
-		zombies.clear();
+		entities.clear();
 	}
 
 	public Vector2D getVector(int tileSize) {
