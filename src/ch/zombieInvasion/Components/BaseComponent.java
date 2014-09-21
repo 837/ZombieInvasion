@@ -1,7 +1,8 @@
 package ch.zombieInvasion.Components;
 
 public interface BaseComponent {
-  public String getName();
-  public String toJSON();
+	public ComponentType getType();
 
+	public boolean isEnabled();
+	public void setEnabled(boolean b);
 }

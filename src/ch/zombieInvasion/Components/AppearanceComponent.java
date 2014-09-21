@@ -1,28 +1,48 @@
 package ch.zombieInvasion.Components;
 
-import ch.zombieInvasion.util.ImageM;
-
-import com.google.gson.Gson;
+import ch.zombieInvasion.util.ImageTypes;
 
 public class AppearanceComponent implements BaseComponent {
-  private String componentName = "AppearanceComponent";
-  private ImageM img;
+  private ComponentType type = ComponentType.Appearance;
+  private ImageTypes imageType;
+  private boolean enabled = true;
 
-  public AppearanceComponent(ImageM img) {
-    this.img = img;
+  public AppearanceComponent() {
+
   }
 
-  public ImageM getImage() {
-    return img;
+  public AppearanceComponent(ImageTypes imageType) {
+    this.imageType = imageType;
+  }
+
+
+  public ImageTypes getImageType() {
+    return imageType;
+  }
+
+  public void setImageType(ImageTypes imageType) {
+    this.imageType = imageType;
+  }
+
+  public void setType(ComponentType type) {
+    this.type = type;
   }
 
   @Override
-  public String getName() {
-    return componentName;
+  public ComponentType getType() {
+    return type;
   }
 
   @Override
-  public String toJSON() {
-    return new Gson().toJson(this);
+  public boolean isEnabled() {
+    return enabled;
   }
+
+  @Override
+  public void setEnabled(boolean b) {
+    enabled = b;
+  }
+
+
+
 }

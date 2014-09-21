@@ -1,27 +1,31 @@
 package ch.zombieInvasion.States.Game;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.Random;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.MouseListener;
 
 import ch.zombieInvasion.Game;
 import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.ComponentSystems.RenderSystem;
 import ch.zombieInvasion.Components.AppearanceComponent;
+import ch.zombieInvasion.Components.ComponentType;
 import ch.zombieInvasion.Components.PositionComponent;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
-import ch.zombieInvasion.Eventhandling.EventType;
 import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.States.BaseState;
-import ch.zombieInvasion.util.ImageM;
-import ch.zombieInvasion.util.Images;
+import ch.zombieInvasion.util.ImageTypes;
 import ch.zombieInvasion.util.LOGGER;
-import ch.zombieInvasion.util.Timer;
 import ch.zombieInvasion.util.Vector2D;
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 
 public class GameStateRunning implements BaseState<Game> {
   private final int TICKS_PER_SECOND = 30;
@@ -31,13 +35,9 @@ public class GameStateRunning implements BaseState<Game> {
   private int loops;
   private double extrapolation;
 
-
-
   @Override
   public void Enter(Game owner) {
     LOGGER.LOG("Entering StateRunning");
-
-
   }
 
   @Override
@@ -48,26 +48,36 @@ public class GameStateRunning implements BaseState<Game> {
       EventDispatcher.dispatchEvents();
       Input input = game.container.getInput();
 
-      Vector2D mousePos = game.camera.getPositionInWorld(new Vector2D(input.getAbsoluteMouseX(), input.getAbsoluteMouseY()));
-
+      Vector2D mousePos =
+          game.camera.getPositionInWorld(new Vector2D(input.getAbsoluteMouseX(), input
+              .getAbsoluteMouseY()));
 
       if (game.container.getInput().isKeyPressed(Input.KEY_DELETE)) {
         game.world.eManager.deleteAll();
       }
+     
+
 
       if (game.container.getInput().isKeyPressed(Input.KEY_J)) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5000; i++) {
           Entity e = new Entity();
-          e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random().nextInt(800))));
-
+          e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random()
+              .nextInt(800))));
+          e.addComponent(new AppearanceComponent(ImageTypes.hardZombie));
           game.world.eManager.addEntity(e);
+
+
         }
       }
       if (game.container.getInput().isKeyPressed(Input.KEY_K)) {
-        ArrayList<String> names = new ArrayList<>();
-        names.add("AppearanceComponent");
-        game.world.eManager.getEntities().stream().filter(e -> e.containsComponents(names)).findAny().get().addComponent(new AppearanceComponent(Images.hardZombie));
+        for (int i = 0; i < 10; i++) {
+          game.world.eManager.getEntities().parallelStream()
+              .filter(e -> e.hasComponent(ComponentType.Appearance))
+              .filter(e -> e.getComponent(ComponentType.Appearance).isEnabled()).findAny().get()
+              .getComponent(ComponentType.Appearance).setEnabled(false);
+        }
       }
+
       EventDispatcher.getEvents().forEach(e -> {
         switch (e.getEvent()) {
           case Reset_Game:
@@ -91,7 +101,8 @@ public class GameStateRunning implements BaseState<Game> {
   @Override
   public void Render(Game owner, Graphics g, double extrapolationHereUnused, Camera cameraHereUnused) {
     owner.world.Render(g, extrapolation, owner.camera);
-    RenderSystem rs = new RenderSystem(owner.world.eManager.getEntities(), owner.container.getGraphics());
+    RenderSystem rs =
+        new RenderSystem(owner.world.eManager.getEntities(), owner.container.getGraphics());
     rs.Update();
   }
 

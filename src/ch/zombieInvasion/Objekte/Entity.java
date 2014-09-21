@@ -1,49 +1,58 @@
 package ch.zombieInvasion.Objekte;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
-import org.newdawn.slick.Graphics;
-
-import com.google.gson.Gson;
-
-import ch.zombieInvasion.Game;
-import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Components.BaseComponent;
+import ch.zombieInvasion.Components.ComponentType;
 import ch.zombieInvasion.util.Util;
 
 public class Entity {
   private String id;
-  private ArrayList<BaseComponent> components = new ArrayList<>();
+
+  private HashSet<BaseComponent> components = new HashSet<>();
+
+
 
   public Entity() {
-    id = Util.uniqueID();
+    setId(Util.uniqueID());
   }
 
-  public ArrayList<BaseComponent> getComponents() {
+  public HashSet<BaseComponent> getComponents() {
     return components;
   }
 
-  public void addComponent(BaseComponent component) {
-    components.add(component);
+  public void addComponent(BaseComponent comp) {
+    components.add(comp);
   }
 
-  public BaseComponent getComponent(String componentName) {
-    return components.stream().filter(e -> e.getName().equals(componentName)).findFirst().get();
+  public void removeComponent(ComponentType type) {
+    components.removeIf(e -> e.getType() == type);
   }
 
-  public void removeComponent(String componentName) {
-    ArrayList<BaseComponent> tempList = new ArrayList<>();
-    components.stream().filter(e -> e.getName().equals(componentName)).forEach(e2 -> tempList.add(e2));
-    components.removeAll(tempList);
+  public boolean hasComponent(ComponentType type) {
+    return components.parallelStream().anyMatch(e -> e.getType() == type);
   }
 
-  public boolean containsComponents(ArrayList<String> names) {
-    ArrayList<String> templist = new ArrayList<>();
-    components.forEach(e -> templist.add(e.getName()));
-    return templist.containsAll(names);
+  public boolean hasComponents(ArrayList<ComponentType> types) {
+    ArrayList<ComponentType> templist = new ArrayList<>();
+    components.forEach(e -> templist.add(e.getType()));
+    return templist.containsAll(types);
   }
 
-  public String toJSON() {
-    return new Gson().toJson(this);
+  public BaseComponent getComponent(ComponentType type) {
+    return components.parallelStream().filter(e -> e.getType() == type).findAny().get();
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setComponents(HashSet<BaseComponent> components) {
+    this.components = components;
   }
 }

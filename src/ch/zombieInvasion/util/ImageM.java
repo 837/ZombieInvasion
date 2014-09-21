@@ -4,37 +4,52 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class ImageM {
-	Image img;
+  private Image image;
+  private ImageTypes type;
 
-	public ImageM(String data) {
-		try {
-			img = new Image(data);
-		} catch (SlickException e) {
-			LOGGER.LOG("Error while creating an ImageM");
-		}
-	}
+  public ImageM() {
 
-	/**
-	 * 
-	 * @return this img data;
-	 */
-	public Image get() {
-		return img;
-	}
+  }
 
-	/**
-	 * 
-	 * @return img.getWidth() / 2;
-	 */
-	public float getRadiusW() {
-		return img.getWidth() / 2;
-	}
+  public ImageM(ImageTypes type) {
+    try {
+      image = new Image(type.toString());
+      this.type = type;
+    } catch (SlickException e) {
+      LOGGER.LOG("Error while creating an ImageM");
+    }
+  }
 
-	/**
-	 * 
-	 * @return img.getHeight() / 2;
-	 */
-	public float getRadiusH() {
-		return img.getHeight() / 2;
-	}
+  /**
+   * 
+   * @return this image data;
+   */
+  public Image getImg() {
+    return image;
+  }
+
+  /**
+   * 
+   * @return image.getWidth() / 2;
+   */
+  public float getRadiusW() {
+    return image.getWidth() / 2;
+  }
+
+  /**
+   * 
+   * @return image.getHeight() / 2;
+   */
+  public float getRadiusH() {
+    return image.getHeight() / 2;
+  }
+
+  public ImageTypes getType() {
+    return type;
+  }
+
+  public void setType(ImageTypes type) {
+    this.type = type;
+  }
+
 }
