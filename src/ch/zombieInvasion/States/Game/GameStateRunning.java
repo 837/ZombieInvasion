@@ -17,6 +17,7 @@ import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.ComponentSystems.RenderSystem;
 import ch.zombieInvasion.Components.AppearanceComponent;
 import ch.zombieInvasion.Components.ComponentType;
+import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
 import ch.zombieInvasion.Objekte.Entity;
@@ -48,22 +49,20 @@ public class GameStateRunning implements BaseState<Game> {
       EventDispatcher.dispatchEvents();
       Input input = game.container.getInput();
 
-      Vector2D mousePos =
-          game.camera.getPositionInWorld(new Vector2D(input.getAbsoluteMouseX(), input
-              .getAbsoluteMouseY()));
+      Vector2D mousePos = game.camera.getPositionInWorld(new Vector2D(input.getAbsoluteMouseX(), input.getAbsoluteMouseY()));
 
       if (game.container.getInput().isKeyPressed(Input.KEY_DELETE)) {
         game.world.eManager.deleteAll();
       }
-     
+
 
 
       if (game.container.getInput().isKeyPressed(Input.KEY_J)) {
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 100; i++) {
           Entity e = new Entity();
-          e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random()
-              .nextInt(800))));
+          e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random().nextInt(800))));
           e.addComponent(new AppearanceComponent(ImageTypes.hardZombie));
+          e.addComponent(new MovementComponent(10, 1));
           game.world.eManager.addEntity(e);
 
 
@@ -71,10 +70,8 @@ public class GameStateRunning implements BaseState<Game> {
       }
       if (game.container.getInput().isKeyPressed(Input.KEY_K)) {
         for (int i = 0; i < 10; i++) {
-          game.world.eManager.getEntities().parallelStream()
-              .filter(e -> e.hasComponent(ComponentType.Appearance))
-              .filter(e -> e.getComponent(ComponentType.Appearance).isEnabled()).findAny().get()
-              .getComponent(ComponentType.Appearance).setEnabled(false);
+          game.world.eManager.getEntities().parallelStream().filter(e -> e.hasComponent(ComponentType.Appearance)).filter(e -> e.getComponent(ComponentType.Appearance).isEnabled()).findAny().ifPresent(e1 -> e1.getComponent(ComponentType.Appearance).setEnabled(false));
+
         }
       }
 
@@ -101,8 +98,7 @@ public class GameStateRunning implements BaseState<Game> {
   @Override
   public void Render(Game owner, Graphics g, double extrapolationHereUnused, Camera cameraHereUnused) {
     owner.world.Render(g, extrapolation, owner.camera);
-    RenderSystem rs =
-        new RenderSystem(owner.world.eManager.getEntities(), owner.container.getGraphics());
+    RenderSystem rs = new RenderSystem(owner.world.eManager.getEntities(), owner.container.getGraphics());
     rs.Update();
   }
 

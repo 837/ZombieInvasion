@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 import ch.zombieInvasion.Camera.Camera;
+import ch.zombieInvasion.ComponentSystems.EntityMovement.EntityMovementSystem;
 import ch.zombieInvasion.Pathfinding.Node;
 import ch.zombieInvasion.Pathfinding.PathFindAlgorithm;
 import ch.zombieInvasion.util.LOGGER;
@@ -54,6 +55,9 @@ public class World {
     if (i.isKeyDown(Input.KEY_D)) {
       game.camera.move(new Vector2D(10, 0));
     }
+    
+    EntityMovementSystem ems = new EntityMovementSystem(eManager.getEntities());
+    ems.Update();
   }
 
   public void Render(Graphics g, double extrapolation, Camera camera) {

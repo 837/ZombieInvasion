@@ -1,5 +1,5 @@
 package ch.zombieInvasion.Components;
 
 public enum ComponentType {
-	Appearance, Position
+	Appearance, Position, Movement
 }

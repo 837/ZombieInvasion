@@ -1,25 +1,22 @@
-package ch.zombieInvasion.ComponentSystems;
+package ch.zombieInvasion.ComponentSystems.EntityMovement;
 
 import java.util.ArrayList;
 
-import org.newdawn.slick.Graphics;
-
-import ch.zombieInvasion.Components.AppearanceComponent;
+import ch.zombieInvasion.ComponentSystems.BaseSystem;
 import ch.zombieInvasion.Components.ComponentType;
+import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
 import ch.zombieInvasion.Objekte.Entity;
-import ch.zombieInvasion.util.Images;
+import ch.zombieInvasion.util.Vector2D;
 
-public class RenderSystem extends BaseSystem {
+public class EntityMovementSystem extends BaseSystem {
   private ArrayList<Entity> entities;
   private ArrayList<ComponentType> essentialComponents = new ArrayList<>();
-  private Graphics g;
 
-  public RenderSystem(ArrayList<Entity> entities, Graphics g) {
+  public EntityMovementSystem(ArrayList<Entity> entities) {
     this.entities = entities;
-    essentialComponents.add(ComponentType.Appearance);
+    essentialComponents.add(ComponentType.Movement);
     essentialComponents.add(ComponentType.Position);
-    this.g = g;
   }
 
   private ArrayList<Entity> entitiesToConsider() {
@@ -35,11 +32,17 @@ public class RenderSystem extends BaseSystem {
   @Override
   public void Update() {
     entitiesToConsider().forEach(e -> {
-      AppearanceComponent appC = ((AppearanceComponent) e.getComponent(ComponentType.Appearance));
+      MovementComponent movC = ((MovementComponent) e.getComponent(ComponentType.Movement));
       PositionComponent posC = ((PositionComponent) e.getComponent(ComponentType.Position));
 
-      if (appC.isEnabled() && posC.isEnabled()) {
-        g.drawImage(Images.getImage(appC.getImageType()).getImg(), (float) posC.getPosition().x, (float) posC.getPosition().y);
+      if (movC.isEnabled() && posC.isEnabled()) {
+        Vector2D location = posC.getPosition();
+        Vector2D acceleration = movC.getAcceleration();
+        Vector2D velocity = movC.getVelocity();
+        double movementSpeed = movC.getMovementSpeed();
+        double mass = movC.getMass();
+
+        posC.setPosition(new Vector2D(Math.random() * movC.getMovementSpeed(), Math.random() * movC.getMovementSpeed()).add(posC.getPosition()));
       }
     });
   }
@@ -47,6 +50,7 @@ public class RenderSystem extends BaseSystem {
   @Override
   public void Reset() {
     // TODO Auto-generated method stub
+
   }
 
 }
