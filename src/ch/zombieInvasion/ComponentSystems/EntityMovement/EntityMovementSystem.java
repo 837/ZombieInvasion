@@ -36,13 +36,8 @@ public class EntityMovementSystem extends BaseSystem {
       PositionComponent posC = ((PositionComponent) e.getComponent(ComponentType.Position));
 
       if (movC.isEnabled() && posC.isEnabled()) {
-        Vector2D location = posC.getPosition();
-        Vector2D acceleration = movC.getAcceleration();
-        Vector2D velocity = movC.getVelocity();
-        double movementSpeed = movC.getMovementSpeed();
-        double mass = movC.getMass();
-
-        posC.setPosition(new Vector2D(Math.random() * movC.getMovementSpeed(), Math.random() * movC.getMovementSpeed()).add(posC.getPosition()));
+        MovementHelper.arrive(new Vector2D(555, 555), posC, movC);
+        MovementHelper.movementUpdateFinished(movC);
       }
     });
   }

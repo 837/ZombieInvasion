@@ -4,14 +4,16 @@ import ch.zombieInvasion.util.Vector2D;
 
 public class MovementComponent implements BaseComponent {
   private boolean enabled = true;
-  private double movementSpeed;
+  private double maxSpeed;
   private double mass;
+  private double maxForce;
   private Vector2D acceleration = new Vector2D();
-  private Vector2D velocity = new Vector2D();
+  
 
-  public MovementComponent(double movementSpeed, double mass) {
-    this.setMovementSpeed(movementSpeed);
+  public MovementComponent(double maxSpeed, double mass, double maxForce) {
+    this.setMaxSpeed(maxSpeed);
     this.setMass(mass);
+    this.setMaxForce(maxForce);
   }
 
   @Override
@@ -29,12 +31,12 @@ public class MovementComponent implements BaseComponent {
     enabled = b;
   }
 
-  public double getMovementSpeed() {
-    return movementSpeed;
+  public double getMaxSpeed() {
+    return maxSpeed;
   }
 
-  public void setMovementSpeed(double movementSpeed) {
-    this.movementSpeed = movementSpeed;
+  public void setMaxSpeed(double maxSpeed) {
+    this.maxSpeed = maxSpeed;
   }
 
   public double getMass() {
@@ -52,13 +54,13 @@ public class MovementComponent implements BaseComponent {
   public void setAcceleration(Vector2D acceleration) {
     this.acceleration = acceleration;
   }
-
-  public Vector2D getVelocity() {
-    return velocity;
+  
+  public double getMaxForce() {
+    return maxForce;
   }
 
-  public void setVelocity(Vector2D velocity) {
-    this.velocity = velocity;
+  public void setMaxForce(double maxForce) {
+    this.maxForce = maxForce;
   }
 
 }

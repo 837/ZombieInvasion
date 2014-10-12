@@ -9,14 +9,18 @@ import ch.zombieInvasion.Components.ComponentType;
 import ch.zombieInvasion.Components.PositionComponent;
 import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.util.Images;
+import ch.zombieInvasion.util.Vector2D;
+
 
 public class RenderSystem extends BaseSystem {
   private ArrayList<Entity> entities;
   private ArrayList<ComponentType> essentialComponents = new ArrayList<>();
   private Graphics g;
+  private double extrapolation;
 
-  public RenderSystem(ArrayList<Entity> entities, Graphics g) {
+  public RenderSystem(ArrayList<Entity> entities, Graphics g, double extrapolation) {
     this.entities = entities;
+    this.extrapolation = extrapolation;
     essentialComponents.add(ComponentType.Appearance);
     essentialComponents.add(ComponentType.Position);
     this.g = g;
@@ -34,14 +38,20 @@ public class RenderSystem extends BaseSystem {
 
   @Override
   public void Update() {
-    entitiesToConsider().forEach(e -> {
-      AppearanceComponent appC = ((AppearanceComponent) e.getComponent(ComponentType.Appearance));
-      PositionComponent posC = ((PositionComponent) e.getComponent(ComponentType.Position));
+    entitiesToConsider().forEach(
+        e -> {
+          AppearanceComponent appC =
+              ((AppearanceComponent) e.getComponent(ComponentType.Appearance));
+          PositionComponent posC = ((PositionComponent) e.getComponent(ComponentType.Position));
 
-      if (appC.isEnabled() && posC.isEnabled()) {
-        g.drawImage(Images.getImage(appC.getImageType()).getImg(), (float) posC.getPosition().x, (float) posC.getPosition().y);
-      }
-    });
+          Vector2D extrapolatedPosition =
+              posC.getPosition().add(posC.getVelocity().mult(extrapolation));
+
+          if (appC.isEnabled() && posC.isEnabled()) {
+            g.drawImage(Images.getImage(appC.getImageType()).getImg(),
+                (float) extrapolatedPosition.x, (float) extrapolatedPosition.y);
+          }
+        });
   }
 
   @Override

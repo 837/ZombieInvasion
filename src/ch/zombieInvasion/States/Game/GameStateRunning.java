@@ -49,7 +49,9 @@ public class GameStateRunning implements BaseState<Game> {
       EventDispatcher.dispatchEvents();
       Input input = game.container.getInput();
 
-      Vector2D mousePos = game.camera.getPositionInWorld(new Vector2D(input.getAbsoluteMouseX(), input.getAbsoluteMouseY()));
+      Vector2D mousePos =
+          game.camera.getPositionInWorld(new Vector2D(input.getAbsoluteMouseX(), input
+              .getAbsoluteMouseY()));
 
       if (game.container.getInput().isKeyPressed(Input.KEY_DELETE)) {
         game.world.eManager.deleteAll();
@@ -57,22 +59,24 @@ public class GameStateRunning implements BaseState<Game> {
 
 
 
-      if (game.container.getInput().isKeyPressed(Input.KEY_J)) {
+      if (game.container.getInput().isKeyPressed(Input.KEY_Z)) {
         for (int i = 0; i < 100; i++) {
           Entity e = new Entity();
-          e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random().nextInt(800))));
+          e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random()
+              .nextInt(800))));
           e.addComponent(new AppearanceComponent(ImageTypes.hardZombie));
-          e.addComponent(new MovementComponent(10, 1));
+          e.addComponent(new MovementComponent(3, 1, 0.5));
           game.world.eManager.addEntity(e);
 
 
         }
       }
-      if (game.container.getInput().isKeyPressed(Input.KEY_K)) {
-        for (int i = 0; i < 10; i++) {
-          game.world.eManager.getEntities().parallelStream().filter(e -> e.hasComponent(ComponentType.Appearance)).filter(e -> e.getComponent(ComponentType.Appearance).isEnabled()).findAny().ifPresent(e1 -> e1.getComponent(ComponentType.Appearance).setEnabled(false));
-
-        }
+      if (game.container.getInput().isKeyPressed(Input.KEY_H)) {
+        Entity e = new Entity();
+        e.addComponent(new PositionComponent(mousePos));
+        e.addComponent(new AppearanceComponent(ImageTypes.normalZombie));
+        e.addComponent(new MovementComponent(5, 2, 1));
+        game.world.eManager.addEntity(e);
       }
 
       EventDispatcher.getEvents().forEach(e -> {
@@ -98,8 +102,10 @@ public class GameStateRunning implements BaseState<Game> {
   @Override
   public void Render(Game owner, Graphics g, double extrapolationHereUnused, Camera cameraHereUnused) {
     owner.world.Render(g, extrapolation, owner.camera);
-    RenderSystem rs = new RenderSystem(owner.world.eManager.getEntities(), owner.container.getGraphics());
-    rs.Update();
+
+    new RenderSystem(owner.world.eManager.getEntities(), owner.container.getGraphics(),
+        extrapolation).Update();
+
   }
 
   @Override

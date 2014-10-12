@@ -4,6 +4,7 @@ import ch.zombieInvasion.util.Vector2D;
 
 public class PositionComponent implements BaseComponent {
   private Vector2D position;
+  private Vector2D velocity = new Vector2D();
   private boolean enabled = true;
 
   public PositionComponent(Vector2D position) {
@@ -16,6 +17,14 @@ public class PositionComponent implements BaseComponent {
 
   public Vector2D getPosition() {
     return position;
+  }
+
+  public Vector2D getVelocity() {
+    return velocity;
+  }
+
+  public void setVelocity(Vector2D velocity) {
+    this.velocity = velocity;
   }
 
   @Override
@@ -32,4 +41,5 @@ public class PositionComponent implements BaseComponent {
   public void setEnabled(boolean b) {
     enabled = b;
   }
+
 }
