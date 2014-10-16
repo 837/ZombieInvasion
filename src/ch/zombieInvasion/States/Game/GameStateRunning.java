@@ -37,9 +37,7 @@ public class GameStateRunning implements BaseState<Game> {
   private double extrapolation;
 
   @Override
-  public void Enter(Game owner) {
-    LOGGER.LOG("Entering StateRunning");
-  }
+  public void Enter(Game owner) {}
 
   @Override
   public void Update(Game owner, Game game) {
@@ -49,9 +47,7 @@ public class GameStateRunning implements BaseState<Game> {
       EventDispatcher.dispatchEvents();
       Input input = game.container.getInput();
 
-      Vector2D mousePos =
-          game.camera.getPositionInWorld(new Vector2D(input.getAbsoluteMouseX(), input
-              .getAbsoluteMouseY()));
+      Vector2D mousePos = game.camera.getPositionInWorld(new Vector2D(input.getAbsoluteMouseX(), input.getAbsoluteMouseY()));
 
       if (game.container.getInput().isKeyPressed(Input.KEY_DELETE)) {
         game.world.eManager.deleteAll();
@@ -62,8 +58,7 @@ public class GameStateRunning implements BaseState<Game> {
       if (game.container.getInput().isKeyPressed(Input.KEY_Z)) {
         for (int i = 0; i < 100; i++) {
           Entity e = new Entity();
-          e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random()
-              .nextInt(800))));
+          e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random().nextInt(800))));
           e.addComponent(new AppearanceComponent(ImageTypes.hardZombie));
           e.addComponent(new MovementComponent(3, 1, 0.5));
           game.world.eManager.addEntity(e);
@@ -103,14 +98,11 @@ public class GameStateRunning implements BaseState<Game> {
   public void Render(Game owner, Graphics g, double extrapolationHereUnused, Camera cameraHereUnused) {
     owner.world.Render(g, extrapolation, owner.camera);
 
-    new RenderSystem(owner.world.eManager.getEntities(), owner.container.getGraphics(),
-        extrapolation).Update();
+    new RenderSystem(owner.world.eManager.getEntities(), owner.container.getGraphics(), extrapolation).Update();
 
   }
 
   @Override
-  public void Exit(Game owner) {
-    LOGGER.LOG("Exiting StateRunning");
-  }
+  public void Exit(Game owner) {}
 
 }

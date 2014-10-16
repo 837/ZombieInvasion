@@ -25,11 +25,7 @@ public class World {
 
   public World() throws SlickException {
     eManager = new EntityManager();
-
     map = new TiledMap("res/map.tmx");
-
-
-
     calculateNodesAndGraph();
     updatePath(new Vector2D(Math.round(map.getWidth() / 2), map.getHeight()));
 
@@ -55,7 +51,7 @@ public class World {
     if (i.isKeyDown(Input.KEY_D)) {
       game.camera.move(new Vector2D(10, 0));
     }
-    
+
     EntityMovementSystem ems = new EntityMovementSystem(eManager.getEntities());
     ems.Update();
   }
@@ -126,7 +122,6 @@ public class World {
       }
     }
     all_nodes.stream().forEach(e -> e.setNeighbors(setNeighbors(e)));
-    LOGGER.LOG("Calculated nodes and graph");
   }
 
   private ArrayList<Node> setNeighbors(Node e) {

@@ -16,7 +16,7 @@ public class ImageM {
       image = new Image(type.toString());
       this.type = type;
     } catch (SlickException e) {
-      LOGGER.LOG("Error while creating an ImageM");
+      LOGGER.LOG("Error while creating an ImageM: " + type);
     }
   }
 
