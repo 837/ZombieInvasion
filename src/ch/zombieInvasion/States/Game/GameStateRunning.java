@@ -19,6 +19,7 @@ import ch.zombieInvasion.Components.AppearanceComponent;
 import ch.zombieInvasion.Components.ComponentType;
 import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
+import ch.zombieInvasion.Components.TargetComponent;
 import ch.zombieInvasion.Eventhandling.EventDispatcher;
 import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.States.BaseState;
@@ -64,9 +65,8 @@ public class GameStateRunning implements BaseState<Game> {
               .nextInt(800))));
           e.addComponent(new AppearanceComponent(ImageTypes.hardZombie));
           e.addComponent(new MovementComponent(3, 1, 0.5));
+          e.addComponent(new TargetComponent(mousePos, 0, 300));
           game.world.eManager.addEntity(e);
-
-
         }
       }
       if (game.container.getInput().isKeyPressed(Input.KEY_H)) {
@@ -74,6 +74,7 @@ public class GameStateRunning implements BaseState<Game> {
         e.addComponent(new PositionComponent(mousePos));
         e.addComponent(new AppearanceComponent(ImageTypes.normalZombie));
         e.addComponent(new MovementComponent(5, 2, 1));
+        e.addComponent(new TargetComponent(mousePos, 0, 300));
         game.world.eManager.addEntity(e);
       }
 
@@ -85,6 +86,14 @@ public class GameStateRunning implements BaseState<Game> {
             break;
         }
       });
+
+      owner.world.eManager.getEntities().forEach(e -> {
+        if (e.hasComponent(ComponentType.Target)) {
+          TargetComponent tarC = (TargetComponent) e.getComponent(ComponentType.Target);
+          tarC.setPosition(mousePos);
+        }
+      });
+
 
       next_game_tick += timePerTick;
       loops++;

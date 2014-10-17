@@ -27,8 +27,8 @@ public class MovementHelper {
     desired = desired.normalize();
 
     if (d < (20 * 20)) {
-      // float m = (float) (maxSpeed / 4 * Math.log10(d + 1));// LOG
-      float m = Util.map((float) d, 0, (20 * 20), 0, (float) movC.getMaxSpeed());// LIN
+      float m = (float) (movC.getMaxSpeed() / 4 * Math.log10(d + 1));// LOG
+      // float m = Util.map((float) d, 0, (20 * 20), 0, (float) movC.getMaxSpeed());// LIN
       desired = desired.mult(m);
     } else {
       desired = desired.mult(movC.getMaxSpeed());
@@ -55,11 +55,11 @@ public class MovementHelper {
   }
 
   /**
-   * needs to be called to reset the acceleration to 0
+   * needs to be called, to reset the acceleration to 0
    * 
    * @param movC
    */
-  public static void movementUpdateFinished(MovementComponent movC) {
+  public static void movementUpdateFinished(MovementComponent movC, PositionComponent posC) {
     movC.setAcceleration(movC.getAcceleration().mult(0));
   }
 }

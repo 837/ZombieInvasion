@@ -6,8 +6,8 @@ import ch.zombieInvasion.ComponentSystems.BaseSystem;
 import ch.zombieInvasion.Components.ComponentType;
 import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
+import ch.zombieInvasion.Components.TargetComponent;
 import ch.zombieInvasion.Objekte.Entity;
-import ch.zombieInvasion.util.Vector2D;
 
 public class EntityMovementSystem extends BaseSystem {
   private ArrayList<Entity> entities;
@@ -17,6 +17,7 @@ public class EntityMovementSystem extends BaseSystem {
     this.entities = entities;
     essentialComponents.add(ComponentType.Movement);
     essentialComponents.add(ComponentType.Position);
+    essentialComponents.add(ComponentType.Target);
   }
 
   private ArrayList<Entity> entitiesToConsider() {
@@ -34,10 +35,14 @@ public class EntityMovementSystem extends BaseSystem {
     entitiesToConsider().forEach(e -> {
       MovementComponent movC = ((MovementComponent) e.getComponent(ComponentType.Movement));
       PositionComponent posC = ((PositionComponent) e.getComponent(ComponentType.Position));
+      TargetComponent tarC = ((TargetComponent) e.getComponent(ComponentType.Target));
 
-      if (movC.isEnabled() && posC.isEnabled()) {
-        MovementHelper.arrive(new Vector2D(555, 555), posC, movC);
-        MovementHelper.movementUpdateFinished(movC);
+
+      if (movC.isEnabled() && posC.isEnabled() & tarC.isEnabled()) {
+        if (tarC.getPosition().dist(posC.getPosition()) <= tarC.getMaxAttackDistance()) {
+          MovementHelper.arrive(tarC.getPosition(), posC, movC);
+          MovementHelper.movementUpdateFinished(movC, posC);
+        }
       }
     });
   }
