@@ -22,7 +22,9 @@ public class Camera {
   }
 
   public void setPosition(Vector2D point) {
-    position = new Vector2D(checkOffset(offsetMinX, offsetMaxX, point.x), checkOffset(offsetMinY, offsetMaxY, point.y));
+    position =
+        new Vector2D(checkOffset(offsetMinX, offsetMaxX, point.x), checkOffset(offsetMinY,
+            offsetMaxY, point.y));
   }
 
   public void move(Vector2D direction) {
@@ -39,8 +41,10 @@ public class Camera {
   }
 
   private double checkOffset(double lowerBound, double upperBound, double number) {
-    if (number < lowerBound) return lowerBound;
-    if (number > upperBound) return upperBound;
+    if (number < lowerBound)
+      return lowerBound;
+    if (number > upperBound)
+      return upperBound;
     return number;
   }
 
@@ -60,7 +64,7 @@ public class Camera {
     return screenPos.add(getPosition());
   }
 
-  
+
   public double getScreenPosX(double x) {
     return (x - getPosition().x);
   }
@@ -72,8 +76,18 @@ public class Camera {
   public Vector2D getPositionOnScreen(Vector2D screenPos) {
     return screenPos.sub(getPosition());
   }
-  
-  
+
+  int offSet = 25;
+
+  public boolean isPosInView(Vector2D position) {
+    if (position.x < getCamPosX() - offSet || position.y < getCamPosY() - offSet
+        || position.x > (getCamPosX() + viewport_size_X + offSet)
+        || position.y > (getCamPosY() + viewport_size_Y + offSet)) {
+      return false;
+    }
+    return true;
+  }
+
   public double getCamPosX() {
     return getPosition().x;
   }

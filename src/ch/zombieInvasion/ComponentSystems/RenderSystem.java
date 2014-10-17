@@ -2,8 +2,11 @@ package ch.zombieInvasion.ComponentSystems;
 
 import java.util.ArrayList;
 
+import java.util.Vector;
+
 import org.newdawn.slick.Graphics;
 
+import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Components.AppearanceComponent;
 import ch.zombieInvasion.Components.ComponentType;
 import ch.zombieInvasion.Components.PositionComponent;
@@ -17,10 +20,12 @@ public class RenderSystem extends BaseSystem {
   private ArrayList<ComponentType> essentialComponents = new ArrayList<>();
   private Graphics g;
   private double extrapolation;
+  private Camera camera;
 
-  public RenderSystem(ArrayList<Entity> entities, Graphics g, double extrapolation) {
+  public RenderSystem(ArrayList<Entity> entities, Graphics g, double extrapolation, Camera camera) {
     this.entities = entities;
     this.extrapolation = extrapolation;
+    this.camera = camera;
     essentialComponents.add(ComponentType.Appearance);
     essentialComponents.add(ComponentType.Position);
     this.g = g;
@@ -47,9 +52,13 @@ public class RenderSystem extends BaseSystem {
           Vector2D extrapolatedPosition =
               posC.getPosition().add(posC.getVelocity().mult(extrapolation));
 
-          if (appC.isEnabled() && posC.isEnabled()) {
-            g.drawImage(Images.getImage(appC.getImageType()).getImg(),
-                (float) extrapolatedPosition.x, (float) extrapolatedPosition.y);
+          Vector2D renderPos = camera.getPositionOnScreen(extrapolatedPosition);
+
+          if (camera.isPosInView(extrapolatedPosition)) {
+            if (appC.isEnabled() && posC.isEnabled()) {
+              g.drawImage(Images.getImage(appC.getImageType()).getImg(), (float) renderPos.x,
+                  (float) renderPos.y);
+            }
           }
         });
   }

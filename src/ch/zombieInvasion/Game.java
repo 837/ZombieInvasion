@@ -30,7 +30,6 @@ public class Game extends BasicGame {
     container.setVSync(false);
     container.setUpdateOnlyWhenVisible(true);
     container.setClearEachFrame(true);
-    LOGGER.LOG("Game started!");
     container.start();
   }
 
@@ -41,7 +40,9 @@ public class Game extends BasicGame {
     this.container = container;
     world = new World();
     camera = new Camera(container.getWidth(), container.getHeight());
-    camera.setMapData(world.map.getWidth() * world.map.getTileWidth(), world.map.getHeight() * world.map.getTileHeight());
+    camera.setMapData(world.map.getWidth() * world.map.getTileWidth(), world.map.getHeight()
+        * world.map.getTileHeight());
+    LOGGER.LOG("Game started!");
   }
 
   @Override

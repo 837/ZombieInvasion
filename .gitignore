@@ -11,7 +11,6 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.classpath
 .settings/
 .loadpath
 
@@ -216,6 +215,10 @@ pip-log.txt
 /bin/
 
 DebugLog.txt
+/bin/
+/bin/
+/bin/
+/bin/
 /bin/
 /bin/
 /bin/
