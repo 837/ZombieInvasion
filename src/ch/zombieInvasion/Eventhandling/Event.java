@@ -3,50 +3,62 @@ package ch.zombieInvasion.Eventhandling;
 import java.util.ArrayList;
 
 public class Event {
-	private EventType event;
-	private long delayMillis;
-	private boolean persistent = false;
-	private ArrayList<Object> additionalInfos;
-	private Object additionalInfo;
+  private EventType event;
+  private long delayMillis;
+  private boolean persistent = false;
+  private ArrayList<Object> additionalInfos;
+  private Object additionalInfo;
 
-	public Event(long delayMillis, EventType event, ArrayList<Object> additionalInfos) {
-		this.event = event;
-		this.delayMillis = delayMillis;
-		this.additionalInfos = additionalInfos;
-	}
+  public Event(long delayMillis, EventType event, ArrayList<Object> additionalInfos) {
+    this.event = event;
+    this.delayMillis = delayMillis;
+    this.additionalInfos = additionalInfos;
+  }
 
-	public Event(long delayMillis, EventType event, Object additionalInfo) {
-		this.event = event;
-		this.delayMillis = delayMillis;
-		this.additionalInfo = additionalInfo;
-	}
+  public Event(EventType event, ArrayList<Object> additionalInfos) {
+    this.event = event;
+    this.delayMillis = 0;
+    this.additionalInfos = additionalInfos;
+  }
 
-	public EventType getEvent() {
-		return event;
-	}
+  public Event(long delayMillis, EventType event, Object additionalInfo) {
+    this.event = event;
+    this.delayMillis = delayMillis;
+    this.additionalInfo = additionalInfo;
+  }
 
-	public long getDelayMillis() {
-		return delayMillis;
-	}
+  public Event(EventType event, Object additionalInfo) {
+    this.event = event;
+    this.delayMillis = 0;
+    this.additionalInfo = additionalInfo;
+  }
 
-	public boolean isPersistent() {
-		return persistent;
-	}
+  public EventType getEvent() {
+    return event;
+  }
 
-	public ArrayList<Object> getAdditionalInfos() {
-		return additionalInfos;
-	}
+  public long getDelayMillis() {
+    return delayMillis;
+  }
 
-	public Object getAdditionalInfo() {
-		return additionalInfo;
-	}
+  public boolean isPersistent() {
+    return persistent;
+  }
 
-	public void setDelayMillis(long delayMillis) {
-		this.delayMillis = delayMillis;
-	}
+  public ArrayList<Object> getAdditionalInfos() {
+    return additionalInfos;
+  }
 
-	public void setPersistent(boolean persistent) {
-		this.persistent = persistent;
-	}
+  public Object getAdditionalInfo() {
+    return additionalInfo;
+  }
+
+  public void setDelayMillis(long delayMillis) {
+    this.delayMillis = delayMillis;
+  }
+
+  public void setPersistent(boolean persistent) {
+    this.persistent = persistent;
+  }
 
 }

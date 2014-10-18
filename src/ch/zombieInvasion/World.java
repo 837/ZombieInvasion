@@ -34,22 +34,22 @@ public class World {
   public void Update(Game game) {
     resetEntitiesInNodes();
     eManager.Update(game);
-    if (game.container.getInput().isKeyPressed(Input.KEY_T)) {
+    if (game.getContainer().getInput().isKeyPressed(Input.KEY_T)) {
       draw = !draw;
     }
 
-    Input i = game.container.getInput();
+    Input i = game.getContainer().getInput();
     if (i.isKeyDown(Input.KEY_W)) {
-      game.camera.move(new Vector2D(0, -10));
+      game.getCamera().move(new Vector2D(0, -10));
     }
     if (i.isKeyDown(Input.KEY_A)) {
-      game.camera.move(new Vector2D(-10, 0));
+      game.getCamera().move(new Vector2D(-10, 0));
     }
     if (i.isKeyDown(Input.KEY_S)) {
-      game.camera.move(new Vector2D(0, 10));
+      game.getCamera().move(new Vector2D(0, 10));
     }
     if (i.isKeyDown(Input.KEY_D)) {
-      game.camera.move(new Vector2D(10, 0));
+      game.getCamera().move(new Vector2D(10, 0));
     }
 
     EntityMovementSystem ems = new EntityMovementSystem(eManager.getEntities());

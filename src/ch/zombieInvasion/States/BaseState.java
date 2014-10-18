@@ -4,7 +4,6 @@ import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Game;
 import ch.zombieInvasion.Camera.Camera;
-import ch.zombieInvasion.Eventhandling.Event;
 
 public interface BaseState<entity_typ> {
 	void Enter(entity_typ owner);

@@ -2,7 +2,6 @@ package ch.zombieInvasion.ComponentSystems.EntityMovement;
 
 import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
-import ch.zombieInvasion.util.Util;
 import ch.zombieInvasion.util.Vector2D;
 
 public class MovementHelper {

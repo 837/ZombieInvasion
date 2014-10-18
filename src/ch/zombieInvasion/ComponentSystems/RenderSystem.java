@@ -2,8 +2,6 @@ package ch.zombieInvasion.ComponentSystems;
 
 import java.util.ArrayList;
 
-import java.util.Vector;
-
 import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Camera.Camera;

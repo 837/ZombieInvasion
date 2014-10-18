@@ -2,10 +2,6 @@ package ch.zombieInvasion.util;
 
 import java.util.Random;
 
-import org.newdawn.slick.geom.Line;
-import org.newdawn.slick.geom.Shape;
-import org.newdawn.slick.geom.Vector2f;
-
 
 public class Util {
 	static Random rnd = new Random();

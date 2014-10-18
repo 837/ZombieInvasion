@@ -5,19 +5,19 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class EventDispatcher {
-	static private ArrayList<Event> currentEvents = new ArrayList<>();
-	static private ArrayList<Event> persistentEvents = new ArrayList<>();
+	 private ArrayList<Event> currentEvents = new ArrayList<>();
+	 private ArrayList<Event> persistentEvents = new ArrayList<>();
 
-	static private Comparator<Event> timeComparator = new Comparator<Event>() {
+	 private Comparator<Event> timeComparator = new Comparator<Event>() {
 		@Override
 		public int compare(Event m1, Event m2) {
 			return (int) (m1.getDelayMillis() - m2.getDelayMillis());
 		}
 	};
 
-	static private PriorityQueue<Event> messagesQueue = new PriorityQueue<>(timeComparator);
+	 private PriorityQueue<Event> messagesQueue = new PriorityQueue<>(timeComparator);
 
-	static public void createEvent(long delayMillis, EventType msg, ArrayList<Object> additonalInfos) {
+	 public void createEvent(long delayMillis, EventType msg, ArrayList<Object> additonalInfos) {
 
 		Event event = new Event(delayMillis, msg, additonalInfos);
 		if (delayMillis == 0.0) {
@@ -32,7 +32,7 @@ public class EventDispatcher {
 		}
 	}
 
-	static public void createEvent(long delayMillis, EventType msg, Object additonalInfo) {
+	 public void createEvent(long delayMillis, EventType msg, Object additonalInfo) {
 		Event event = new Event(delayMillis, msg, additonalInfo);
 		if (delayMillis == 0.0) {
 			messagesQueue.add(event);
@@ -46,7 +46,7 @@ public class EventDispatcher {
 		}
 	}
 
-	static public void dispatchEvents() {
+	 public void Update() {
 		long currentTime = System.currentTimeMillis();
 		currentEvents.clear();
 		while (!messagesQueue.isEmpty() && messagesQueue.peek().getDelayMillis() < currentTime) {
@@ -58,12 +58,12 @@ public class EventDispatcher {
 		}
 	}
 
-	static public ArrayList<Event> getEvents() {
+	 public ArrayList<Event> getEvents() {
 		currentEvents.addAll(persistentEvents);
 		return currentEvents;
 	}
 
-	static public void removePersistentEvent(Event event) {
+	 public void removePersistentEvent(Event event) {
 		persistentEvents.remove(event);
 	}
 }

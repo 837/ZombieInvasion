@@ -12,8 +12,6 @@ public class Entity {
 
   private HashSet<BaseComponent> components = new HashSet<>();
 
-
-
   public Entity() {
     setId(Util.uniqueID());
   }

@@ -7,15 +7,17 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import ch.zombieInvasion.Camera.Camera;
+import ch.zombieInvasion.Eventhandling.EventDispatcher;
 import ch.zombieInvasion.States.StateMachine;
 import ch.zombieInvasion.States.Game.GameStateRunning;
 import ch.zombieInvasion.util.LOGGER;
 
 public class Game extends BasicGame {
-  public StateMachine<Game> stateMachine;
-  public GameContainer container;
-  public World world;
-  public Camera camera;
+  private StateMachine<Game> stateMachine;
+  private GameContainer container;
+  private World world;
+  private Camera camera;
+  private EventDispatcher eventDispatcher;
 
   private static String GAMENAME = "Zombie Invasion ";
   private static String VERSION = "Alpha 3.0.1";
@@ -35,13 +37,22 @@ public class Game extends BasicGame {
 
   @Override
   public void init(GameContainer container) throws SlickException {
-    stateMachine = new StateMachine<Game>(this);
-    stateMachine.SetCurrentState(new GameStateRunning());
-    this.container = container;
-    world = new World();
-    camera = new Camera(container.getWidth(), container.getHeight());
-    camera.setMapData(world.map.getWidth() * world.map.getTileWidth(), world.map.getHeight()
-        * world.map.getTileHeight());
+    // Statemachine
+    setStateMachine(new StateMachine<Game>(this));
+    getStateMachine().SetCurrentState(new GameStateRunning());
+
+    this.setContainer(container);
+    // world
+    setWorld(new World());
+
+    // camera
+    setCamera(new Camera(container.getWidth(), container.getHeight()));
+    getCamera().setMapData(getWorld().map.getWidth() * getWorld().map.getTileWidth(),
+        getWorld().map.getHeight() * getWorld().map.getTileHeight());
+
+    // eventdispatcher
+    setEventDispatcher(new EventDispatcher());
+
     LOGGER.LOG("Game started!");
   }
 
@@ -59,5 +70,45 @@ public class Game extends BasicGame {
   public boolean closeRequested() {
     LOGGER.LOG("Game stopped!");
     return super.closeRequested();
+  }
+
+  public GameContainer getContainer() {
+    return container;
+  }
+
+  public void setContainer(GameContainer container) {
+    this.container = container;
+  }
+
+  public EventDispatcher getEventDispatcher() {
+    return eventDispatcher;
+  }
+
+  public void setEventDispatcher(EventDispatcher eventDispatcher) {
+    this.eventDispatcher = eventDispatcher;
+  }
+
+  public Camera getCamera() {
+    return camera;
+  }
+
+  public void setCamera(Camera camera) {
+    this.camera = camera;
+  }
+
+  public World getWorld() {
+    return world;
+  }
+
+  public void setWorld(World world) {
+    this.world = world;
+  }
+
+  public StateMachine<Game> getStateMachine() {
+    return stateMachine;
+  }
+
+  public void setStateMachine(StateMachine<Game> stateMachine) {
+    this.stateMachine = stateMachine;
   }
 }

@@ -3,10 +3,7 @@ package ch.zombieInvasion.util;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 
 public class LOGGER {
   public static void LOG(String txt) {
