@@ -6,8 +6,8 @@ import org.newdawn.slick.Graphics;
 
 import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Components.AppearanceComponent;
-import ch.zombieInvasion.Components.ComponentType;
 import ch.zombieInvasion.Components.PositionComponent;
+import ch.zombieInvasion.Components.base.ComponentType;
 import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.util.Images;
 import ch.zombieInvasion.util.Vector2D;

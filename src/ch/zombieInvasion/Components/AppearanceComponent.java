@@ -1,10 +1,12 @@
 package ch.zombieInvasion.Components;
 
+import ch.zombieInvasion.Components.base.BaseComponent;
+import ch.zombieInvasion.Components.base.ComponentType;
 import ch.zombieInvasion.util.ImageTypes;
 
-public class AppearanceComponent implements BaseComponent {
+public class AppearanceComponent extends BaseComponent {
   private ImageTypes imageType;
-  private boolean enabled = true;
+
 
   public AppearanceComponent(ImageTypes imageType) {
     this.imageType = imageType;
@@ -22,17 +24,5 @@ public class AppearanceComponent implements BaseComponent {
   public ComponentType getType() {
     return ComponentType.Appearance;
   }
-
-  @Override
-  public boolean isEnabled() {
-    return enabled;
-  }
-
-  @Override
-  public void setEnabled(boolean b) {
-    enabled = b;
-  }
-
-
 
 }

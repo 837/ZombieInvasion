@@ -2,9 +2,13 @@ package ch.zombieInvasion.ComponentSystems.EntityMovement;
 
 import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
+import ch.zombieInvasion.Components.WanderMovementComponent;
 import ch.zombieInvasion.util.Vector2D;
 
+// TODO non static
 public class MovementHelper {
+
+
   // steeringbehaviors
   public static void seek(Vector2D targetLocation, PositionComponent posC, MovementComponent movC) {
     Vector2D desired = targetLocation.sub(posC.getPosition());
@@ -13,10 +17,11 @@ public class MovementHelper {
 
     Vector2D steer = desired.sub(posC.getVelocity());
     steer = steer.limit(movC.getMaxForce());
+
     applyForce(steer, movC);
     addToVelocity(movC, posC);
     limitVelocity(movC, posC);
-    posC.setPosition(posC.getPosition().add(posC.getVelocity()));
+    setPosition(movC, posC);
   }
 
   public static void arrive(Vector2D targetLocation, PositionComponent posC, MovementComponent movC) {
@@ -38,9 +43,51 @@ public class MovementHelper {
     applyForce(steer, movC);
     addToVelocity(movC, posC);
     limitVelocity(movC, posC);
-    posC.setPosition(posC.getPosition().add(posC.getVelocity()));
+    setPosition(movC, posC);
   }
 
+  public static void wander(PositionComponent posC, MovementComponent movC,
+      WanderMovementComponent wamC) {
+    double CIRCLE_DISTANCE = wamC.getCircleDistance();
+    Vector2D circleCenter = posC.getVelocity();
+    circleCenter = circleCenter.normalize();
+    circleCenter = circleCenter.mult(CIRCLE_DISTANCE);
+
+    //
+    // Calculate the displacement force
+    double CIRCLE_RADIUS = wamC.getCircleRadius();
+    Vector2D displacement = new Vector2D(0, -1);
+    displacement = displacement.mult(CIRCLE_RADIUS);
+
+    //
+    // Randomly change the vector direction
+    // by making it change its current angle
+    double displaceMentLength = displacement.mag();
+    double x = Math.cos(wamC.getWanderAngle()) * displaceMentLength;
+    double y = Math.sin(wamC.getWanderAngle()) * displaceMentLength;
+    displacement = new Vector2D(x, y);
+
+
+    //
+    // Change wanderAngle just a bit, so it
+    // won't have the same value in the
+    // next game frame.
+    double ANGLE_CHANGE = wamC.getAngleChange();
+    wamC.setWanderAngle(wamC.getWanderAngle() + Math.random() * ANGLE_CHANGE - ANGLE_CHANGE * .5);
+
+    //
+    // Finally calculate and return the wander force
+    Vector2D wanderForce = circleCenter.add(displacement);
+
+    applyForce(wanderForce, movC);
+    addToVelocity(movC, posC);
+    posC.setVelocity(posC.getVelocity().limit(wamC.getWanderMovementSpeed()));
+    setPosition(movC, posC);
+  }
+
+  /*
+   * HELPER FUNCTIONS
+   */
   public static void applyForce(Vector2D force, MovementComponent movC) {
     movC.setAcceleration(movC.getAcceleration().add(force.div(movC.getMass())));
   }
@@ -51,6 +98,12 @@ public class MovementHelper {
 
   private static void limitVelocity(MovementComponent movC, PositionComponent posC) {
     posC.setVelocity(posC.getVelocity().limit(movC.getMaxSpeed()));
+  }
+
+  private static void setPosition(MovementComponent movC, PositionComponent posC) {
+    Vector2D pos = posC.getPosition().add(posC.getVelocity());
+    posC.setPosition(new Vector2D((int) pos.x, (int) pos.y));
+    // posC.setPosition(posC.getPosition().add(posC.getVelocity()));
   }
 
   /**

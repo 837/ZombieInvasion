@@ -66,3 +66,132 @@
 
 2014-10-18T00:42:59.367  Game started!
 2014-10-18T00:43:10.291  Game stopped!
+
+2014-10-18T14:59:01.329  Game started!
+2014-10-18T14:59:57.574  Game stopped!
+
+2014-10-18T15:45:44.373  Game started!
+2014-10-18T15:46:56.220  Game stopped!
+
+2014-10-18T15:48:10.678  Game started!
+2014-10-18T15:51:23.602  Game stopped!
+
+2014-10-18T15:52:12.007  Game started!
+2014-10-18T15:52:20.884  Game stopped!
+
+2014-10-19T01:12:18.190  Game started!
+2014-10-19T01:13:34.744  Game stopped!
+
+2014-10-19T01:14:19.546  Game started!
+2014-10-19T01:14:33.260  Game stopped!
+
+2014-10-19T01:15:28.740  Game started!
+2014-10-19T01:16:10.936  Game stopped!
+
+2014-10-19T01:18:57.947  Game started!
+2014-10-19T01:19:00.988  Game stopped!
+
+2014-10-19T01:19:15.885  Game started!
+2014-10-19T01:19:25.045  Game stopped!
+
+2014-10-19T01:19:54.719  Game started!
+2014-10-19T01:20:00.771  Game stopped!
+
+2014-10-19T01:20:34.627  Game started!
+2014-10-19T01:20:39.174  Game stopped!
+
+2014-10-19T01:21:01.851  Game started!
+2014-10-19T01:21:13.394  Game stopped!
+
+2014-10-19T01:23:34.136  Game started!
+2014-10-19T01:25:37.945  Game stopped!
+
+2014-10-19T01:25:51.762  Game started!
+2014-10-19T01:25:56.513  Game stopped!
+
+2014-10-19T01:26:09.638  Game started!
+2014-10-19T01:26:17.526  Game stopped!
+
+2014-10-19T01:27:22.046  Game started!
+2014-10-19T01:27:42.496  Game stopped!
+
+2014-10-19T02:15:06.372  Game started!
+2014-10-19T02:15:15.589  Game stopped!
+
+2014-10-19T02:31:32.430  Game started!
+2014-10-19T02:31:35.178  Game stopped!
+
+2014-10-19T02:31:45.015  Game started!
+2014-10-19T02:31:56.757  Game stopped!
+
+2014-10-19T02:33:03.429  Game started!
+2014-10-19T02:33:43.449  Game stopped!
+
+2014-10-19T02:34:01.215  Game started!
+2014-10-19T02:34:04.725  Game stopped!
+
+2014-10-19T12:24:03.074  Game started!
+2014-10-19T12:24:18.308  Game stopped!
+
+2014-10-19T12:26:33.498  Game started!
+2014-10-19T12:26:40.545  Game stopped!
+
+2014-10-19T12:26:53.561  Game started!
+2014-10-19T12:27:34.656  Game stopped!
+
+2014-10-19T12:28:23.534  Game started!
+2014-10-19T12:28:29.452  Game stopped!
+
+2014-10-19T19:18:17.356  Game started!
+2014-10-19T19:18:28.636  Game stopped!
+
+2014-10-19T19:19:02.607  Game started!
+2014-10-19T19:19:10.774  Game stopped!
+
+2014-10-19T19:19:26.558  Game started!
+2014-10-19T19:19:30.863  Game stopped!
+
+2014-10-19T19:19:36.894  Game started!
+2014-10-19T19:19:40.430  Game stopped!
+
+2014-10-19T19:19:48.286  Game started!
+2014-10-19T19:19:54.681  Game stopped!
+
+2014-10-19T19:20:05.921  Game started!
+2014-10-19T19:20:13.990  Game stopped!
+
+2014-10-19T19:20:20.683  Game started!
+2014-10-19T19:20:25.709  Game stopped!
+
+2014-10-19T19:20:41.677  Game started!
+2014-10-19T19:20:48.068  Game stopped!
+
+2014-10-19T19:21:00.637  Game started!
+2014-10-19T19:21:06.556  Game stopped!
+
+2014-10-19T19:21:25.427  Game started!
+2014-10-19T19:21:29.251  Game stopped!
+
+2014-10-19T19:21:36.002  Game started!
+2014-10-19T19:21:39.391  Game stopped!
+
+2014-10-19T19:21:44.674  Game started!
+2014-10-19T19:23:19.808  Game stopped!
+
+2014-10-19T19:27:18.114  Game started!
+2014-10-19T19:27:23.991  Game stopped!
+
+2014-10-19T19:27:32.374  Game started!
+2014-10-19T19:29:00.490  Game stopped!
+
+2014-10-19T20:03:27.500  Game started!
+2014-10-19T20:07:08.109  Game stopped!
+
+2014-10-19T20:07:18.501  Game started!
+2014-10-19T20:09:29.301  Game stopped!
+
+2014-10-19T20:10:16.607  Game started!
+2014-10-19T20:10:28.985  Game stopped!
+
+2014-10-19T20:10:38.135  Game started!
+2014-10-19T20:10:43.024  Game stopped!

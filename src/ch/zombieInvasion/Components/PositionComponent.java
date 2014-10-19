@@ -1,11 +1,12 @@
 package ch.zombieInvasion.Components;
 
+import ch.zombieInvasion.Components.base.BaseComponent;
+import ch.zombieInvasion.Components.base.ComponentType;
 import ch.zombieInvasion.util.Vector2D;
 
-public class PositionComponent implements BaseComponent {
+public class PositionComponent extends BaseComponent {
   private Vector2D position;
   private Vector2D velocity = new Vector2D();
-  private boolean enabled = true;
 
   public PositionComponent(Vector2D position) {
     this.position = position;
@@ -30,16 +31,6 @@ public class PositionComponent implements BaseComponent {
   @Override
   public ComponentType getType() {
     return ComponentType.Position;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return enabled;
-  }
-
-  @Override
-  public void setEnabled(boolean b) {
-    enabled = b;
   }
 
 }

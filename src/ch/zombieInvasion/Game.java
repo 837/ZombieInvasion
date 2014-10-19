@@ -29,7 +29,8 @@ public class Game extends BasicGame {
   public static void main(String[] args) throws SlickException {
     AppGameContainer container = new AppGameContainer(new Game());
     container.setDisplayMode(1280, 780, false);
-    container.setVSync(false);
+    container.setVSync(true);
+  //  container.setTargetFrameRate(60);
     container.setUpdateOnlyWhenVisible(true);
     container.setClearEachFrame(true);
     container.start();

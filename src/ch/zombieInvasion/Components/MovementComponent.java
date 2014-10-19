@@ -1,14 +1,15 @@
 package ch.zombieInvasion.Components;
 
+import ch.zombieInvasion.Components.base.BaseComponent;
+import ch.zombieInvasion.Components.base.ComponentType;
 import ch.zombieInvasion.util.Vector2D;
 
-public class MovementComponent implements BaseComponent {
-  private boolean enabled = true;
+public class MovementComponent extends BaseComponent {
   private double maxSpeed;
   private double mass;
   private double maxForce;
   private Vector2D acceleration = new Vector2D();
-  
+
 
   public MovementComponent(double maxSpeed, double mass, double maxForce) {
     this.setMaxSpeed(maxSpeed);
@@ -19,16 +20,6 @@ public class MovementComponent implements BaseComponent {
   @Override
   public ComponentType getType() {
     return ComponentType.Movement;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return enabled;
-  }
-
-  @Override
-  public void setEnabled(boolean b) {
-    enabled = b;
   }
 
   public double getMaxSpeed() {
@@ -54,7 +45,7 @@ public class MovementComponent implements BaseComponent {
   public void setAcceleration(Vector2D acceleration) {
     this.acceleration = acceleration;
   }
-  
+
   public double getMaxForce() {
     return maxForce;
   }

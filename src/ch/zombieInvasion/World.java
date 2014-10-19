@@ -130,6 +130,8 @@ public class World {
     // int[][] dirs = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 }, { -1, -1
     // }, { 1, 1 }, { -1, 1 }, { 1, -1 } }; // plus
     // diagonal
+    
+    //only the 4 sides
     int[][] dirs = { {1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
     for (int i = 0; i < dirs.length; i++) {

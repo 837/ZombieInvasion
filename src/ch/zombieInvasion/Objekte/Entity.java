@@ -3,24 +3,24 @@ package ch.zombieInvasion.Objekte;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import ch.zombieInvasion.Components.BaseComponent;
-import ch.zombieInvasion.Components.ComponentType;
+import ch.zombieInvasion.Components.base.ComponentType;
+import ch.zombieInvasion.Components.base.IBaseComponent;
 import ch.zombieInvasion.util.Util;
 
 public class Entity {
   private String id;
 
-  private HashSet<BaseComponent> components = new HashSet<>();
+  private HashSet<IBaseComponent> components = new HashSet<>();
 
   public Entity() {
     setId(Util.uniqueID());
   }
 
-  public HashSet<BaseComponent> getComponents() {
+  public HashSet<IBaseComponent> getComponents() {
     return components;
   }
 
-  public void addComponent(BaseComponent comp) {
+  public void addComponent(IBaseComponent comp) {
     components.add(comp);
   }
 
@@ -38,7 +38,7 @@ public class Entity {
     return templist.containsAll(types);
   }
 
-  public BaseComponent getComponent(ComponentType type) {
+  public IBaseComponent getComponent(ComponentType type) {
     return components.parallelStream().filter(e -> e.getType() == type).findAny().get();
   }
 
@@ -50,7 +50,7 @@ public class Entity {
     this.id = id;
   }
 
-  public void setComponents(HashSet<BaseComponent> components) {
+  public void setComponents(HashSet<IBaseComponent> components) {
     this.components = components;
   }
 }

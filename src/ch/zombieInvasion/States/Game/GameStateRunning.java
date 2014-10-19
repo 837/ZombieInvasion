@@ -1,6 +1,7 @@
 package ch.zombieInvasion.States.Game;
 
 import java.util.Random;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
@@ -8,10 +9,11 @@ import ch.zombieInvasion.Game;
 import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.ComponentSystems.RenderSystem;
 import ch.zombieInvasion.Components.AppearanceComponent;
-import ch.zombieInvasion.Components.ComponentType;
 import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
 import ch.zombieInvasion.Components.TargetComponent;
+import ch.zombieInvasion.Components.WanderMovementComponent;
+import ch.zombieInvasion.Components.base.ComponentType;
 import ch.zombieInvasion.Objekte.Entity;
 import ch.zombieInvasion.States.BaseState;
 import ch.zombieInvasion.util.ImageTypes;
@@ -55,6 +57,7 @@ public class GameStateRunning implements BaseState<Game> {
           e.addComponent(new AppearanceComponent(ImageTypes.hardZombie));
           e.addComponent(new MovementComponent(3, 1, 0.5));
           e.addComponent(new TargetComponent(mousePos, 0, 300));
+          e.addComponent(new WanderMovementComponent(2));
           game.getWorld().eManager.addEntity(e);
         }
       }
@@ -64,6 +67,7 @@ public class GameStateRunning implements BaseState<Game> {
         e.addComponent(new AppearanceComponent(ImageTypes.normalZombie));
         e.addComponent(new MovementComponent(5, 2, 1));
         e.addComponent(new TargetComponent(mousePos, 0, 300));
+        e.addComponent(new WanderMovementComponent(2));
         game.getWorld().eManager.addEntity(e);
       }
 
