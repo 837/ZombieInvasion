@@ -55,9 +55,9 @@ public class GameStateRunning implements BaseState<Game> {
           e.addComponent(new PositionComponent(new Vector2D(new Random().nextInt(800), new Random()
               .nextInt(800))));
           e.addComponent(new AppearanceComponent(ImageTypes.hardZombie));
-          e.addComponent(new MovementComponent(3, 1, 0.5));
+          e.addComponent(new MovementComponent(2, 1, 0.1));
           e.addComponent(new TargetComponent(mousePos, 0, 300));
-          e.addComponent(new WanderMovementComponent(2));
+          e.addComponent(new WanderMovementComponent(0.5));
           game.getWorld().eManager.addEntity(e);
         }
       }
@@ -65,9 +65,9 @@ public class GameStateRunning implements BaseState<Game> {
         Entity e = new Entity();
         e.addComponent(new PositionComponent(mousePos));
         e.addComponent(new AppearanceComponent(ImageTypes.normalZombie));
-        e.addComponent(new MovementComponent(5, 2, 1));
+        e.addComponent(new MovementComponent(1, 1, 0.1));
         e.addComponent(new TargetComponent(mousePos, 0, 300));
-        e.addComponent(new WanderMovementComponent(2));
+        e.addComponent(new WanderMovementComponent(0.25));
         game.getWorld().eManager.addEntity(e);
       }
 

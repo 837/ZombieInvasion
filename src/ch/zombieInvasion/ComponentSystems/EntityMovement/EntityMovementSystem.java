@@ -46,10 +46,10 @@ public class EntityMovementSystem extends BaseSystem {
                 MovementHelper.arrive(tarC.getPosition(), posC, movC);
                 MovementHelper.movementUpdateFinished(movC, posC);
               } else {
-
+                MovementHelper.wander(posC, movC, wamC);
+                MovementHelper.movementUpdateFinished(movC, posC);
               }
             }
-
           });
   }
 

@@ -1,17 +1,19 @@
 package ch.zombieInvasion.Components;
 
+import java.util.Random;
+
 import ch.zombieInvasion.Components.base.BaseComponent;
 import ch.zombieInvasion.Components.base.ComponentType;
 
 public class WanderMovementComponent extends BaseComponent {
-  private double circleDistance = 20;
+  private double circleDistance = 5;
   private double circleRadius = 10;
   private double wanderAngle;
   private double wanderMovementMaxSpeed;
   private double angleChange = 1;
 
-  public double tx = 0;
-  public double ty = 10000;
+  public double tx = new Random().nextInt(1000);
+  public double ty = new Random().nextInt(1000);
 
   /**
    * Default params are:

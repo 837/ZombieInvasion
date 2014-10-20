@@ -3,12 +3,14 @@ package ch.zombieInvasion.ComponentSystems;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
 import ch.zombieInvasion.Camera.Camera;
 import ch.zombieInvasion.Components.AppearanceComponent;
 import ch.zombieInvasion.Components.PositionComponent;
 import ch.zombieInvasion.Components.base.ComponentType;
 import ch.zombieInvasion.Objekte.Entity;
+import ch.zombieInvasion.util.ImageM;
 import ch.zombieInvasion.util.Images;
 import ch.zombieInvasion.util.Vector2D;
 
@@ -54,8 +56,8 @@ public class RenderSystem extends BaseSystem {
 
           if (camera.isPosInView(extrapolatedPosition)) {
             if (appC.isEnabled() && posC.isEnabled()) {
-              g.drawImage(Images.getImage(appC.getImageType()).getImg(), (float) renderPos.x,
-                  (float) renderPos.y);
+              Image image = Images.getImage(appC.getImageType()).getImg();
+              g.drawImage(image, (float) renderPos.x, (float) renderPos.y);
             }
           }
         });

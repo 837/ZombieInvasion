@@ -50,15 +50,21 @@ public class MovementHelper {
 
   public static void perlinMove(PositionComponent posC, MovementComponent movC,
       WanderMovementComponent wamC) {
-    float x = Util.map((float) Noise.noise(wamC.tx), 0, 1, 0, 10);
-    float y = Util.map((float) Noise.noise(wamC.ty), 0, 1, 0, 10);
+    double xN = Noise.noise(wamC.tx);
+    double yN = Noise.noise(wamC.ty);
 
+    double x = Util.map(xN, 0, 1, 0, Math.PI);
+    double y = Util.map(yN, 0, 1, 0, Math.PI);
 
+    System.out.println(xN + " " + yN);
     wamC.tx += 0.01;
     wamC.ty += 0.01;
 
-   
-    applyForce(new Vector2D(x, y), movC);
+
+    Vector2D steer = new Vector2D(x, y).sub(posC.getVelocity());
+    steer = steer.limit(movC.getMaxForce());
+
+    applyForce(steer, movC);
     addToVelocity(movC, posC);
     limitVelocity(movC, posC);
     setPosition(movC, posC);
@@ -95,8 +101,11 @@ public class MovementHelper {
     //
     // Finally calculate and return the wander force
     Vector2D wanderForce = circleCenter.add(displacement);
-
-    applyForce(wanderForce, movC);
+    
+    Vector2D steer = wanderForce.sub(posC.getVelocity());
+    steer = steer.limit(movC.getMaxForce());
+        
+    applyForce(steer, movC);
     addToVelocity(movC, posC);
     posC.setVelocity(posC.getVelocity().limit(wamC.getWanderMovementSpeed()));
     setPosition(movC, posC);
@@ -111,16 +120,18 @@ public class MovementHelper {
 
   private static void addToVelocity(MovementComponent movC, PositionComponent posC) {
     posC.setVelocity(posC.getVelocity().add(movC.getAcceleration()));
+
   }
 
   private static void limitVelocity(MovementComponent movC, PositionComponent posC) {
     posC.setVelocity(posC.getVelocity().limit(movC.getMaxSpeed()));
+
   }
 
   private static void setPosition(MovementComponent movC, PositionComponent posC) {
-    Vector2D pos = posC.getPosition().add(posC.getVelocity());
-    posC.setPosition(new Vector2D((int) pos.x, (int) pos.y));
-    // posC.setPosition(posC.getPosition().add(posC.getVelocity()));
+    // Vector2D pos = posC.getPosition().add(posC.getVelocity());
+    // posC.setPosition(new Vector2D((int) pos.x, (int) pos.y));
+    posC.setPosition(posC.getPosition().add(posC.getVelocity()));
   }
 
   /**
