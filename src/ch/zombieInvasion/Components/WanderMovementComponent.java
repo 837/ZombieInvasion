@@ -10,6 +10,9 @@ public class WanderMovementComponent extends BaseComponent {
   private double wanderMovementMaxSpeed;
   private double angleChange = 1;
 
+  public double tx = 0;
+  public double ty = 10000;
+
   /**
    * Default params are:
    * 

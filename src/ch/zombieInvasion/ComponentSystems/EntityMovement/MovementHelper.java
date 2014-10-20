@@ -3,6 +3,8 @@ package ch.zombieInvasion.ComponentSystems.EntityMovement;
 import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
 import ch.zombieInvasion.Components.WanderMovementComponent;
+import ch.zombieInvasion.util.Noise;
+import ch.zombieInvasion.util.Util;
 import ch.zombieInvasion.util.Vector2D;
 
 // TODO non static
@@ -46,6 +48,22 @@ public class MovementHelper {
     setPosition(movC, posC);
   }
 
+  public static void perlinMove(PositionComponent posC, MovementComponent movC,
+      WanderMovementComponent wamC) {
+    float x = Util.map((float) Noise.noise(wamC.tx), 0, 1, 0, 10);
+    float y = Util.map((float) Noise.noise(wamC.ty), 0, 1, 0, 10);
+
+
+    wamC.tx += 0.01;
+    wamC.ty += 0.01;
+
+   
+    applyForce(new Vector2D(x, y), movC);
+    addToVelocity(movC, posC);
+    limitVelocity(movC, posC);
+    setPosition(movC, posC);
+  }
+
   public static void wander(PositionComponent posC, MovementComponent movC,
       WanderMovementComponent wamC) {
     double CIRCLE_DISTANCE = wamC.getCircleDistance();
@@ -66,7 +84,6 @@ public class MovementHelper {
     double x = Math.cos(wamC.getWanderAngle()) * displaceMentLength;
     double y = Math.sin(wamC.getWanderAngle()) * displaceMentLength;
     displacement = new Vector2D(x, y);
-
 
     //
     // Change wanderAngle just a bit, so it

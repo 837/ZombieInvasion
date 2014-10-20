@@ -20,7 +20,7 @@ public class Game extends BasicGame {
   private EventDispatcher eventDispatcher;
 
   private static String GAMENAME = "Zombie Invasion ";
-  private static String VERSION = "Alpha 3.0.1";
+  private static String VERSION = "Alpha 3.0.2";
 
   public Game() {
     super(GAMENAME + VERSION);

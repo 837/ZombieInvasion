@@ -1,6 +1,7 @@
 package ch.zombieInvasion.ComponentSystems.EntityMovement;
 
 import java.util.ArrayList;
+
 import ch.zombieInvasion.ComponentSystems.BaseSystem;
 import ch.zombieInvasion.Components.MovementComponent;
 import ch.zombieInvasion.Components.PositionComponent;
@@ -47,7 +48,7 @@ public class EntityMovementSystem extends BaseSystem {
               MovementHelper.movementUpdateFinished(movC, posC);
             } else {
               if (wamC != null && wamC.isEnabled()) {
-                MovementHelper.wander(posC, movC, wamC);
+                MovementHelper.perlinMove(posC, movC, wamC);
                 MovementHelper.movementUpdateFinished(movC, posC);
               } else {
                 MovementHelper.arrive(posC.getPosition(), posC, movC);
